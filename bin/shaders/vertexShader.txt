@@ -9,9 +9,12 @@ out vec2 pass_textureCoords;
 
 uniform mat4 transformationMatrix;
 uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
 
 void main(void){
 	
-	gl_Position = projectionMatrix * transformationMatrix * vec4(position, 1.0);
+	// originally it's gl_Position =transformationMatrix * projectionMatrix *  vec4(position, 1.0);
+	// but the squad didn't show up until a guy on YouTube said I should multiply transMatrix first
+	gl_Position = transformationMatrix * viewMatrix * projectionMatrix * vec4(position, 1.0);
 	pass_textureCoords = textureCoords;
 }
