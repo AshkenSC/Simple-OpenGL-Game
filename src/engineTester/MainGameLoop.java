@@ -9,6 +9,7 @@ import models.RawModel;
 import models.TexturedModel;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
+import renderEngine.OBJLoader;
 import renderEngine.Renderer;
 import shaders.StaticShader;
 import textures.ModelTexture;
@@ -22,7 +23,7 @@ public class MainGameLoop {
 		StaticShader shader = new StaticShader();		
 		Renderer renderer = new Renderer(shader);
 		// OpenGL vertices
-		float[] vertices = {			
+		/*float[] vertices = {			
 				-0.5f,0.5f,-0.5f,	
 				-0.5f,-0.5f,-0.5f,	
 				0.5f,-0.5f,-0.5f,	
@@ -99,38 +100,16 @@ public class MainGameLoop {
 				20,21,23,
 				23,21,22
 
-		};
-		/*float[] vertices = {
-				// vertex list is DIFFERENT!
-				
-				// left bottom triangle
-				-0.5f, 0.5f, 0f,
-				-0.5f, -0.5f, 0f,
-				//0.5f, -0.5f, 0f,
-				// right top triangle
-				0.5f, -0.5f, 0f,
-				0.5f, 0.5f, 0
-				//-0.5f, 0.5f, 0f
-		};
-		
-		int[] indices = {
-				0, 1, 3,
-				3, 1, 2
-		};
-		
-		float[] textureCoords = {
-				0, 0,
-				0, 1,
-				1, 1,
-				1, 0
 		};*/
+
 		
 		//RawModel model = loader.loadToVAO(vertices);
-		RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
+		//RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
+		RawModel model = OBJLoader.loadObjModel("stall", loader);
 		//ModelTexture texture = new ModelTexture(loader.loadTexture("image"));
 		//TexturedModel texturedModel = new TexturedModel(model, texture);
-		//和之前的代码奇怪地不一致了……
-		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("image")));
+		//strangely different from previous code...
+		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("stallTexture")));
 		
 		Entity entity = new Entity(staticModel, new Vector3f(0, 0, -1), 0, 0, 0, 1);
 		
@@ -139,7 +118,7 @@ public class MainGameLoop {
 		while(!Display.isCloseRequested()) {
 			//rotation animation
 			entity.increasePosition(0, 0, -0.01f);
-			entity.increaseRotation(0, 1, 0);
+			entity.increaseRotation(1, 1, 0);
 			camera.move();
 			renderer.prepare();
 			//game logic
