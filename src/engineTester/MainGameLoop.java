@@ -31,6 +31,9 @@ public class MainGameLoop {
 		//TexturedModel texturedModel = new TexturedModel(model, texture);
 		//strangely different from previous code...
 		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("yellow")));
+		ModelTexture texture = staticModel.getTexture();
+		texture.setShineDamper(10);
+		texture.setReflectivity(1);
 		
 		Entity entity = new Entity(staticModel, new Vector3f(0, -3, -25), 0, 0, 0, 1);
 		Light light = new Light(new Vector3f(0, 0, -20), new Vector3f(1, 1, 1));
