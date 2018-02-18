@@ -22,11 +22,11 @@ void main(void){
 	
 	// since the matrices multiply order is different, I do not use the worldPosition = transformationMatrix * vec4(position, 1.0)
 	// see https://youtu.be/bcxX0R8nnDs?t=508
-	gl_Position = transformationMatrix * viewMatrix * projectionMatrix * vec4(position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * transformationMatrix * vec4(position, 1.0);
 	pass_textureCoords = textureCoords;
 	
 	// since the matrices multiply order is different, I change some transformationMatrix below to projection Matrix
 	// in order to get correct display
-	surfaceNormal = (projectionMatrix * vec4(normal, 0.0)).xyz;
-	toLightVector = lightPosition - (projectionMatrix * vec4(position, 1.0)).xyz;
+	surfaceNormal = (transformationMatrix * vec4(normal, 0.0)).xyz;
+	toLightVector = lightPosition - (transformationMatrix * vec4(position, 1.0)).xyz;
 }
