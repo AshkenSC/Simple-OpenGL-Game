@@ -10,6 +10,7 @@ import models.RawModel;
 import models.TexturedModel;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
+import renderEngine.MasterRenderer;
 import renderEngine.OBJLoader;
 import renderEngine.Renderer;
 import shaders.StaticShader;
@@ -21,9 +22,7 @@ public class MainGameLoop {
 		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
-		StaticShader shader = new StaticShader();		
-		Renderer renderer = new Renderer(shader);
-		
+				
 		//RawModel model = loader.loadToVAO(vertices);
 		//RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
 		RawModel model = OBJLoader.loadObjModel("dragon", loader);
@@ -40,26 +39,23 @@ public class MainGameLoop {
 		
 		Camera camera = new Camera();
 		
+		MasterRenderer renderer = new MasterRenderer();
 		while(!Display.isCloseRequested()) {
 			//rotation animation
 			entity.increasePosition(0, 0, 0.0f);
 			entity.increaseRotation(0, 0.5f, 0);
 			camera.move();
-			renderer.prepare();
-			//game logic
-			//shader starts
-			shader.start();
-			shader.loadLight(light);
-			shader.loadViewMatrix(camera);
-			//render
-			renderer.render(entity, shader);
-			//shader ends
-			shader.stop();
+			// stuff you want to render
+			// https://youtu.be/X6KjDwA7mZg?t=129
+			for(Entity cube : allCubes)
+			{
+				renderer.processEntity(cube);
+			}
 			DisplayManager.updateDisplay();
 			
 		}
 		
-		shader.cleanUp();
+		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 	}
