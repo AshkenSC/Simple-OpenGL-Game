@@ -66,8 +66,8 @@ public class MainGameLoop {
 		Light light = new Light(new Vector3f(20000, 20000, 20000), new Vector3f(1, 1, 1));
 		
 		// load terrains
-		Terrain terrain = new Terrain(0, 0, loader, new ModelTexture(loader.loadTexture("grass")));
-		Terrain terrain2 = new Terrain(1, 0, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain = new Terrain(0, -1, loader, new ModelTexture(loader.loadTexture("grass")));
+		Terrain terrain2 = new Terrain(-1, -1, loader, new ModelTexture(loader.loadTexture("grass")));
 		
 		// load camera and master renderer
 		Camera camera = new Camera();
