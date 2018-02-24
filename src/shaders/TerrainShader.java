@@ -58,9 +58,9 @@ public class TerrainShader extends ShaderProgram {
 	{
 		super.loadInt(location_backgroundTexture, 0);
 		super.loadInt(location_rTexture, 1);
-		super.loadInt(location_gTexture, 1);
-		super.loadInt(location_bTexture, 1);
-		super.loadInt(location_blendMap, 1);
+		super.loadInt(location_gTexture, 2);
+		super.loadInt(location_bTexture, 3);
+		super.loadInt(location_blendMap, 4);
 	}
 	
 	public void loadSkyColour(float r, float g, float b)

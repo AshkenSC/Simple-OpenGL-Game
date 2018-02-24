@@ -40,7 +40,6 @@ public class Terrain {
 	}
 
 	
-
 	public TerrainTexturePack getTexturePack() {
 		return texturePack;
 	}
