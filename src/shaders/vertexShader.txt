@@ -20,7 +20,7 @@ uniform vec3 lightPosition;
 uniform float useFakeLighting;
 
 // set density and gradient of fog
-const float density = 0.007;
+const float density = 0.0035;
 const float gradient = 1.5;
 
 void main(void)
