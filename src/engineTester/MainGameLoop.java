@@ -11,6 +11,7 @@ import org.lwjgl.util.vector.Vector3f;
 import entities.Camera;
 import entities.Entity;
 import entities.Light;
+import entities.Player;
 import models.RawModel;
 import models.TexturedModel;
 import renderEngine.DisplayManager;
@@ -79,15 +80,23 @@ public class MainGameLoop {
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap);
 		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap);
 		
+		//load player
+		RawModel bunnyModel = OBJLoader.loadObjModel("bunny", loader);
+		TexturedModel bunny = new TexturedModel(bunnyModel, new ModelTexture(loader.loadTexture("white")));
+		Player player = new Player(bunny, new Vector3f(0, -3, -15), 0, 0, 0, 1);
+		
+		
 		// load camera and master renderer
 		Camera camera = new Camera();
 		MasterRenderer renderer = new MasterRenderer();
 
 		while(!Display.isCloseRequested()) {
-			
+	
 			camera.move();
 			
 			// stuff you want to render
+			player.move();
+			renderer.processEntity(player);
 			renderer.processTerrain(terrain);
 			renderer.processTerrain(terrain2);
 			for(Entity entity:entities)
