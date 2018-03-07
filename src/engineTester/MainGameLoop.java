@@ -96,7 +96,7 @@ public class MainGameLoop {
 		
 		
 		// load camera and master renderer
-		Camera camera = new Camera();
+		Camera camera = new Camera(player);
 		MasterRenderer renderer = new MasterRenderer();
 
 		while(!Display.isCloseRequested()) {
