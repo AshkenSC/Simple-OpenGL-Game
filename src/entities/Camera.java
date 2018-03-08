@@ -9,7 +9,6 @@ public class Camera {
 	private float distanceFromPlayer = 50;
 	private float angleAroundPlayer = 0;
 	
-	private static float cameraSpeed = 1.0f;
 	private Vector3f position = new Vector3f(0, 50.0f, 15.0f);
 	private float pitch = 20;
 	private float yaw;
@@ -30,6 +29,7 @@ public class Camera {
 		float horizontalDistance = calculateHorizontalDistance();
 		float verticalDistance = calculateVerticalDistance();
 		calculateCameraPosition(horizontalDistance, verticalDistance);
+		this.yaw = 180 - (player.getRotY() + angleAroundPlayer);
 		
 		/*if(Keyboard.isKeyDown(Keyboard.KEY_W))
 		{
