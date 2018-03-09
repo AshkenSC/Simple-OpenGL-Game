@@ -31,6 +31,7 @@ public class Camera {
 		calculateCameraPosition(horizontalDistance, verticalDistance);
 		this.yaw = 180 - (player.getRotY() + angleAroundPlayer);
 		
+		// Obsolete: use WASD to control camera
 		/*if(Keyboard.isKeyDown(Keyboard.KEY_W))
 		{
 			position.z -= cameraSpeed;
@@ -104,6 +105,8 @@ public class Camera {
 		if(Mouse.isButtonDown(1))
 		{
 			float pitchChange = Mouse.getDY() * 0.1f;
+			if(pitchChange > 1.57f)
+				pitchChange = 1.57f;
 			pitch -= pitchChange;
 		}
 	}
