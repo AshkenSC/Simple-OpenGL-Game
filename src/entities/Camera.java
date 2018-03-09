@@ -95,7 +95,7 @@ public class Camera {
 	
 	private void calculateZoom()
 	{
-		float zoomLevel = Mouse.getDWheel() * 0.1f;
+		float zoomLevel = Mouse.getDWheel() * 0.05f;
 		distanceFromPlayer -= zoomLevel;
 	}
 	
