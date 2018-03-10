@@ -97,7 +97,17 @@ public class Camera {
 	private void calculateZoom()
 	{
 		float zoomLevel = Mouse.getDWheel() * 0.05f;
-		distanceFromPlayer -= zoomLevel;
+		// the if statement is in order to set a range for camera zoom
+		if(distanceFromPlayer > 15 && distanceFromPlayer < 110) {
+			distanceFromPlayer -= zoomLevel;
+		}
+		else if(distanceFromPlayer < 15 && zoomLevel < 0) {
+			distanceFromPlayer -= zoomLevel;
+		}
+		else if(distanceFromPlayer > 110 && zoomLevel > 0) {
+			distanceFromPlayer -= zoomLevel;
+		}
+			
 	}
 	
 	private void calculatePitch()
@@ -106,7 +116,15 @@ public class Camera {
 		{
 			float pitchChange = Mouse.getDY() * 0.1f;
 			// TODO: set pitch change range
-			pitch -= pitchChange;
+			if(pitch > 10 && pitch < 75) {
+				pitch -= pitchChange;
+			}
+			else if(pitch > 75 && pitchChange > 0) {
+				pitch -= pitchChange;
+			}
+			else if(pitch < 10 && pitchChange < 0) {
+				pitch -= pitchChange;
+			}
 		}
 	}
 	
