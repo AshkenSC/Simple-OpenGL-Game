@@ -40,6 +40,18 @@ public class MainGameLoop {
 		texture.setReflectivity(0.2f);
 		*/
 		
+		// load terrains
+		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
+		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
+		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
+		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
+		
+		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
+		
+		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
+		//Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		
 		// load trees
 		RawModel model = OBJLoader.loadObjModel("tree", loader);
         
@@ -64,30 +76,27 @@ public class MainGameLoop {
 	    // set random entity numbers and locations
         List<Entity> entities = new ArrayList<Entity>();
         Random random = new Random();
-        for(int i=0;i<500;i++){
+        for(int i=0; i<500 ;i++){
         	if (i % 3 == 0)		// in order to reduce the number of trees to 1/3 of grass
         	{
-        		entities.add(new Entity(staticModel, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,6));
+        		float x = random.nextFloat() * 800 - 400;
+        		float z = random.nextFloat() * -600;
+        		float y = terrain.getHeightOfTerrain(x, z);
+        		entities.add(new Entity(staticModel, new Vector3f(x, y, z),0,0,0,6));
         	}
-            entities.add(new Entity(grass, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1));
-            entities.add(new Entity(fern, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1));
-            entities.add(new Entity(flower, new Vector3f(random.nextFloat()*800 - 400,0,random.nextFloat() * -600),0,0,0,1));
+        	if (i % 2 == 0) {
+        		float x = random.nextFloat() * 800 - 400;
+        		float z = random.nextFloat() * -600;
+        		float y = terrain.getHeightOfTerrain(x, z);
+	            entities.add(new Entity(grass, new Vector3f(x, y, z),0,0,0,1));
+	            entities.add(new Entity(fern, new Vector3f(x, y, z),0,0,0,1));
+	            entities.add(new Entity(flower, new Vector3f(x, y, z),0,0,0,1));
+        	}
         }
         
         // load light
 		Light light = new Light(new Vector3f(20000, 20000, 20000), new Vector3f(1, 1, 1));
 		
-		// load terrains
-		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("grassy"));
-		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("dirt"));
-		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("pinkFlowers"));
-		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("path"));
-		
-		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
-		
-		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
-		//Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
 		
 		//load player
 		RawModel bunnyModel = OBJLoader.loadObjModel("bunny", loader);
