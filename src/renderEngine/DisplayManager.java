@@ -41,7 +41,7 @@ public class DisplayManager {
 		Display.sync(FPS_CAP);
 		Display.update();
 		long currentFrameTime = getCurrentTime();
-		delta = (currentFrameTime - lastFrameTime)/1000.0f; //devide by 1000 to convert to sec
+		delta = (currentFrameTime - lastFrameTime)/1000.0f; // divide by 1000 to convert to second
 		lastFrameTime = currentFrameTime;
 	}
 	

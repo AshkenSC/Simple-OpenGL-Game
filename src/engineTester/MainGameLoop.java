@@ -87,7 +87,7 @@ public class MainGameLoop {
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
-		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		//Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
 		
 		//load player
 		RawModel bunnyModel = OBJLoader.loadObjModel("bunny", loader);
@@ -104,10 +104,10 @@ public class MainGameLoop {
 			camera.move();
 			
 			// stuff you want to render
-			player.move();
+			player.move(terrain);
 			renderer.processEntity(player);
 			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
+			//renderer.processTerrain(terrain2);
 			for(Entity entity:entities)
 			{
 				renderer.processEntity(entity);
