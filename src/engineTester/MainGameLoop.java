@@ -50,7 +50,7 @@ public class MainGameLoop {
 		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blendMap"));
 		
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
-		//Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
 		
 		// load trees
 		RawModel model = OBJLoader.loadObjModel("tree", loader);
@@ -113,10 +113,17 @@ public class MainGameLoop {
 			camera.move();
 			
 			// stuff you want to render
-			player.move(terrain);
+			if (player.getPosition().x > 0)
+			{
+				player.move(terrain);
+			}
+			else
+			{
+				player.move(terrain2);
+			}
 			renderer.processEntity(player);
 			renderer.processTerrain(terrain);
-			//renderer.processTerrain(terrain2);
+			renderer.processTerrain(terrain2);
 			for(Entity entity:entities)
 			{
 				renderer.processEntity(entity);
