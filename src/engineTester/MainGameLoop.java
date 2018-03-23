@@ -64,8 +64,10 @@ public class MainGameLoop {
         grass.getTexture().setUseFakeLighting(true);
         
         // load fern
+        ModelTexture fernTextureAtlas = new ModelTexture(loader.loadTexture("fern"));
+        fernTextureAtlas.setNumberOfRows(2);
         TexturedModel fern = new TexturedModel(OBJLoader.loadObjModel("fern", loader), 
-        					new ModelTexture(loader.loadTexture("fern")));
+        					fernTextureAtlas);
         fern.getTexture().setHasTransparency(true);
         
         // load flowers
@@ -89,7 +91,7 @@ public class MainGameLoop {
         		float z = random.nextFloat() * -600;
         		float y = terrain.getHeightOfTerrain(x, z);
 	            entities.add(new Entity(grass, new Vector3f(x, y, z),0,0,0,1));
-	            entities.add(new Entity(fern, new Vector3f(x, y, z),0,0,0,1));
+	            entities.add(new Entity(fern, random.nextInt(4), new Vector3f(x, y, z),0,random.nextFloat() * 360,0,0.9f));
 	            entities.add(new Entity(flower, new Vector3f(x, y, z),0,0,0,1));
         	}
         }
