@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 import org.lwjgl.opengl.Display;
-
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import entities.Player;
+import guis.GuiRenderer;
+import guis.GuiTexture;
 import models.RawModel;
 import models.TexturedModel;
 import renderEngine.DisplayManager;
@@ -100,11 +102,17 @@ public class MainGameLoop {
 		Light light = new Light(new Vector3f(20000, 20000, 20000), new Vector3f(1, 1, 1));
 		
 		
-		//load player
+		// load player
 		RawModel bunnyModel = OBJLoader.loadObjModel("bunny", loader);
 		TexturedModel bunny = new TexturedModel(bunnyModel, new ModelTexture(loader.loadTexture("yellow")));
 		Player player = new Player(bunny, new Vector3f(0, -3, -50), 0, 0, 0, 1);
 		
+		// load GUI
+		List<GuiTexture> guis = new ArrayList<GuiTexture>();
+		GuiTexture gui = new GuiTexture(loader.loadTexture("image"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		guis.add(gui);
+		
+		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
 		// load camera and master renderer
 		Camera camera = new Camera(player);
@@ -131,6 +139,7 @@ public class MainGameLoop {
 				renderer.processEntity(entity);
 			}
 			renderer.render(light, camera);
+			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
 		
