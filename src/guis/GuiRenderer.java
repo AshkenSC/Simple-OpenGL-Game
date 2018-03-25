@@ -29,6 +29,7 @@ public class GuiRenderer {
 		GL20.glEnableVertexAttribArray(0);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		//render
 		for(GuiTexture gui: guis) {
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -37,6 +38,7 @@ public class GuiRenderer {
 			shader.loadTransformation(matrix);
 			GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
 		}
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL20.glDisableVertexAttribArray(0);
 		GL30.glBindVertexArray(0);

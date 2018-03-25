@@ -103,14 +103,17 @@ public class MainGameLoop {
 		
 		
 		// load player
-		RawModel bunnyModel = OBJLoader.loadObjModel("bunny", loader);
-		TexturedModel bunny = new TexturedModel(bunnyModel, new ModelTexture(loader.loadTexture("yellow")));
+		RawModel bunnyModel = OBJLoader.loadObjModel("person", loader);
+		TexturedModel bunny = new TexturedModel(bunnyModel, new ModelTexture(loader.loadTexture("playerTexture")));
 		Player player = new Player(bunny, new Vector3f(0, -3, -50), 0, 0, 0, 1);
 		
 		// load GUI
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
 		GuiTexture gui = new GuiTexture(loader.loadTexture("socuwan"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+		GuiTexture gui2 = new GuiTexture(loader.loadTexture("image"), new Vector2f(0.5f, 0.3f), new Vector2f(0.25f, 0.25f));
+		guis.add(gui2);
 		guis.add(gui);
+		
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		

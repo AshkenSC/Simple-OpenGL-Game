@@ -47,9 +47,9 @@ public class Player extends Entity {
 
 	private void checkInputs() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.currentSpeed = -RUN_SPEED;
+			this.currentSpeed = +RUN_SPEED;
 		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.currentSpeed = RUN_SPEED;
+			this.currentSpeed = -RUN_SPEED;
 		} else {
 			this.currentSpeed = 0;
 		}
