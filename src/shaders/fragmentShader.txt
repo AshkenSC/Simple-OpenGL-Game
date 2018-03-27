@@ -39,7 +39,7 @@ void main(void){
 	}	
 	// Make sure totalDiffuse never goes below 0.2
 	// so that any part of the model never goes completely dark
-	totalDiffuse = max(totalDiffuse, 0.2)	
+	totalDiffuse = max(totalDiffuse, 0.2);	
 	
 	vec4 textureColour = texture(textureSampler, pass_textureCoords);
 	if(textureColour.a<0.5)
