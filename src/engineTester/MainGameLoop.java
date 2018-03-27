@@ -98,9 +98,12 @@ public class MainGameLoop {
         	}
         }
         
-        // load light
+        // load lights
 		Light light = new Light(new Vector3f(20000, 20000, 20000), new Vector3f(1, 1, 1));
-		
+		List<Light> lights = new ArrayList<Light>();
+		lights.add(light);
+		lights.add(new Light(new Vector3f(-200, 10, -200), new Vector3f(10, 0, 0)));
+		lights.add(new Light(new Vector3f(200, 10, 200), new Vector3f(0, 0, 10)));
 		
 		// load player
 		RawModel bunnyModel = OBJLoader.loadObjModel("person", loader);
@@ -141,7 +144,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(light, camera);
+			renderer.render(lights, camera);
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
