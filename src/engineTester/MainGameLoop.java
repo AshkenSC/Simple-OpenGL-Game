@@ -101,14 +101,25 @@ public class MainGameLoop {
         // load lights
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(new Light(new Vector3f(0, 1000, -7000), new Vector3f(0.4f, 0.4f, 0.4f)));
-		lights.add(new Light(new Vector3f(185, 10, -293), new Vector3f(2, 0, 0), new Vector3f(1, 0.01f, 0.02f)));
-		lights.add(new Light(new Vector3f(370, 17, -300), new Vector3f(0, 0, 10), new Vector3f(1, 0.01f, 0.02f)));
-		lights.add(new Light(new Vector3f(293, 7, -305), new Vector3f(2, 2, 0), new Vector3f(1, 0.01f, 0.02f)));
+		lights.add(new Light(new Vector3f(0, 10, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.01f, 0.02f)));
+		lights.add(new Light(new Vector3f(0, 17, -90), new Vector3f(0, 0, 10), new Vector3f(1, 0.01f, 0.02f)));
+		lights.add(new Light(new Vector3f(0, 7, -135), new Vector3f(2, 2, 0), new Vector3f(1, 0.01f, 0.02f)));
+		
+		// load lamps
+		// CAUTION: lamps x and z should be the same as the lights' to pretend light is from lamps.
+		RawModel lampModel = OBJLoader.loadObjModel("lamp", loader);
+		TexturedModel lamp = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
+		//entities.add(new Entity(lamp, new Vector3f(185, -4.7f, -293), 0, 0, 0, 1));
+		//entities.add(new Entity(lamp, new Vector3f(370, 4.2f, 300), 0, 0, 0, 1));
+		//entities.add(new Entity(lamp, new Vector3f(293, -6.7f, -305), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0, 0, -60), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0, 0, -90), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0, 0, -135), 0, 0, 0, 1));
 		
 		// load player
-		RawModel bunnyModel = OBJLoader.loadObjModel("person", loader);
-		TexturedModel bunny = new TexturedModel(bunnyModel, new ModelTexture(loader.loadTexture("playerTexture")));
-		Player player = new Player(bunny, new Vector3f(0, -3, -50), 0, 0, 0, 1);
+		RawModel playerModel = OBJLoader.loadObjModel("person", loader);
+		TexturedModel texturedPlayer = new TexturedModel(playerModel, new ModelTexture(loader.loadTexture("playerTexture")));
+		Player player = new Player(texturedPlayer, new Vector3f(0, -3, -50), 0, 0, 0, 1);
 		
 		// load GUI
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
