@@ -101,9 +101,9 @@ public class MainGameLoop {
         // load lights
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(new Light(new Vector3f(0, 1000, -7000), new Vector3f(0.4f, 0.4f, 0.4f)));
-		lights.add(new Light(new Vector3f(0, 10, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.01f, 0.02f)));
-		lights.add(new Light(new Vector3f(0, 17, -90), new Vector3f(0, 0, 10), new Vector3f(1, 0.01f, 0.02f)));
-		lights.add(new Light(new Vector3f(0, 7, -135), new Vector3f(2, 2, 0), new Vector3f(1, 0.01f, 0.02f)));
+		lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
+		lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
+		lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
 		
 		// load lamps
 		// CAUTION: lamps x and z should be the same as the lights' to pretend light is from lamps.
@@ -113,8 +113,8 @@ public class MainGameLoop {
 		//entities.add(new Entity(lamp, new Vector3f(370, 4.2f, 300), 0, 0, 0, 1));
 		//entities.add(new Entity(lamp, new Vector3f(293, -6.7f, -305), 0, 0, 0, 1));
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -60), 0, 0, 0, 1));
-		entities.add(new Entity(lamp, new Vector3f(0, 0, -90), 0, 0, 0, 1));
-		entities.add(new Entity(lamp, new Vector3f(0, 0, -135), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0, 0, -130), 0, 0, 0, 1));
+		entities.add(new Entity(lamp, new Vector3f(0, 0, -195), 0, 0, 0, 1));
 		
 		// load player
 		RawModel playerModel = OBJLoader.loadObjModel("person", loader);
@@ -123,8 +123,8 @@ public class MainGameLoop {
 		
 		// load GUI
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
-		GuiTexture gui = new GuiTexture(loader.loadTexture("socuwan"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
-		GuiTexture gui2 = new GuiTexture(loader.loadTexture("image"), new Vector2f(0.5f, 0.3f), new Vector2f(0.25f, 0.25f));
+		GuiTexture gui = new GuiTexture(loader.loadTexture("socuwan"), new Vector2f(-0.8f, 0.86f), new Vector2f(0.15f, 0.15f));
+		GuiTexture gui2 = new GuiTexture(loader.loadTexture("image"), new Vector2f(-0.8f, -0.75f), new Vector2f(0.15f, 0.15f));
 		guis.add(gui2);
 		guis.add(gui);
 		
