@@ -71,11 +71,13 @@ public class MainGameLoop {
         TexturedModel fern = new TexturedModel(OBJLoader.loadObjModel("fern", loader), 
         					fernTextureAtlas);
         fern.getTexture().setHasTransparency(true);
+        fern.getTexture().setUseFakeLighting(true);
         
         // load flowers
         TexturedModel flower = new TexturedModel(OBJLoader.loadObjModel("grass", loader),
         					new ModelTexture(loader.loadTexture("flower")));
         flower.getTexture().setHasTransparency(true);
+        flower.getTexture().setUseFakeLighting(true);
         
 	    // set random entity numbers and locations
         List<Entity> entities = new ArrayList<Entity>();
@@ -109,6 +111,7 @@ public class MainGameLoop {
 		// CAUTION: lamps x and z should be the same as the lights' to pretend light is from lamps.
 		RawModel lampModel = OBJLoader.loadObjModel("lamp", loader);
 		TexturedModel lamp = new TexturedModel(lampModel, new ModelTexture(loader.loadTexture("lamp")));
+		lamp.getTexture().setUseFakeLighting(true);
 		//entities.add(new Entity(lamp, new Vector3f(185, -4.7f, -293), 0, 0, 0, 1));
 		//entities.add(new Entity(lamp, new Vector3f(370, 4.2f, 300), 0, 0, 0, 1));
 		//entities.add(new Entity(lamp, new Vector3f(293, -6.7f, -305), 0, 0, 0, 1));
@@ -119,7 +122,7 @@ public class MainGameLoop {
 		// load player
 		RawModel playerModel = OBJLoader.loadObjModel("person", loader);
 		TexturedModel texturedPlayer = new TexturedModel(playerModel, new ModelTexture(loader.loadTexture("playerTexture")));
-		Player player = new Player(texturedPlayer, new Vector3f(0, -3, -50), 0, 0, 0, 1);
+		Player player = new Player(texturedPlayer, new Vector3f(50, -3, -100), 0, 180, 0, 1);
 		
 		// load GUI
 		List<GuiTexture> guis = new ArrayList<GuiTexture>();
