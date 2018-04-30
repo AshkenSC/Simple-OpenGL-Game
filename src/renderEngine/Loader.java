@@ -4,6 +4,7 @@ package renderEngine;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -18,7 +19,10 @@ import org.lwjgl.opengl.GL30;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
+import de.matthiasmann.twl.utils.PNGDecoder.Format;
 import models.RawModel;
+import textures.TextureData;
 
 public class Loader {
 	
@@ -79,6 +83,27 @@ public class Loader {
 		{
 			GL11.glDeleteTextures(texture);
 		}
+	}
+	
+	private TextureData decodeTextureFile(String fileName) {
+		int width = 0;
+		int height = 0;
+		ByteBuffer buffer = null;
+		try {
+			FileInputStream in = new FileInputStream(fileName);
+			PNGDecoder decoder = new PNGDecoder(in);
+			width = decoder.getWidth();
+			height = decoder.getHeight();
+			buffer = ByteBuffer.allocateDirect(4 * width * height);
+			decoder.decode(buffer, width * 4, Format.RGBA);
+			buffer.flip();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Tried to load texture " + fileName + ", didn't work");
+			System.exit(-1);
+		}
+		return new TextureData(buffer, width, height);
 	}
 	
 	private int createVAO()
