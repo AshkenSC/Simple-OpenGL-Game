@@ -26,6 +26,7 @@ import terrains.Terrain;
 import terrains.TerrainTexture;
 import terrains.TerrainTexturePack;
 import textures.ModelTexture;
+import toolbox.MousePicker;
 
 public class MainGameLoop {
 
@@ -134,13 +135,20 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
-		// load camera and master renderer
+		// Load camera and master renderer
 		Camera camera = new Camera(player);
 		MasterRenderer renderer = new MasterRenderer(loader);
 
+		// Load mouse picker
+		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix());
+		
 		while(!Display.isCloseRequested()) {
 	
 			camera.move();
+			
+			// Mouse picker
+			picker.update();
+			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
 			// stuff you want to render
 			if (player.getPosition().x > 0)
