@@ -140,7 +140,11 @@ public class MainGameLoop {
 		MasterRenderer renderer = new MasterRenderer(loader);
 
 		// Load mouse picker
-		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix());
+		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix(), terrain);
+		Entity lampEntity = (new Entity(lamp, new Vector3f(293, -6.8f, -305), 0, 0, 0, 1));
+		entities.add(lampEntity);
+		
+		
 		
 		while(!Display.isCloseRequested()) {
 	
@@ -148,6 +152,10 @@ public class MainGameLoop {
 			
 			// Mouse picker
 			picker.update();
+			Vector3f terrainPoint = picker.getCurrentTerrainPoint();
+			if(terrainPoint != null) {
+				lampEntity.setPosition(terrainPoint);
+			}
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
 			// stuff you want to render
