@@ -27,6 +27,7 @@ import terrains.TerrainTexture;
 import terrains.TerrainTexturePack;
 import textures.ModelTexture;
 import toolbox.MousePicker;
+import water.WaterFrameBuffers;
 import water.WaterRenderer;
 import water.WaterShader;
 import water.WaterTile;
@@ -153,6 +154,9 @@ public class MainGameLoop {
 		List<WaterTile> waters = new ArrayList<WaterTile> ();
 		waters.add(new WaterTile(75, -75, 0));
 		
+		WaterFrameBuffers fbos = new WaterFrameBuffers();
+		GuiTexture gui3 = new GuiTexture(fbos.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.5f, 0.5f));
+		guis.add(gui3);
 		
 		while(!Display.isCloseRequested()) {
 	
@@ -167,6 +171,8 @@ public class MainGameLoop {
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
 			// stuff you want to render
+			fbos.bindReflectionFrameBuffer();
+			/* render part except water and gui*/
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -183,11 +189,34 @@ public class MainGameLoop {
 				renderer.processEntity(entity);
 			}
 			renderer.render(lights, camera);
+			/* render part except water and gui*/
+			fbos.unbindCurrentFrameBuffer();
+			
+			/* render part except water and gui*/
+			if (player.getPosition().x > 0)
+			{
+				player.move(terrain);
+			}
+			else
+			{
+				player.move(terrain2);
+			}
+			renderer.processEntity(player);
+			renderer.processTerrain(terrain);
+			renderer.processTerrain(terrain2);
+			for(Entity entity:entities)
+			{
+				renderer.processEntity(entity);
+			}
+			renderer.render(lights, camera);
+			/* render part except water and gui*/
 			waterRenderer.render(waters, camera); 		// render water
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
 		
+		// Clean-ups
+		fbos.cleanUp();
 		waterShader.cleanUp();
 		guiRenderer.cleanUp();
 		renderer.cleanUp();
