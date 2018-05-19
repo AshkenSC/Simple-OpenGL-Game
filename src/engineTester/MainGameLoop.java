@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -171,6 +173,7 @@ public class MainGameLoop {
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
 			// stuff you want to render
+			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	// Enable clip plane
 			fbos.bindReflectionFrameBuffer();
 			/* render part except water and gui*/
 			if (player.getPosition().x > 0)
