@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 import entities.Camera;
 import entities.Entity;
@@ -191,7 +192,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(lights, camera);
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, 8));
 			/* render part except water and gui*/
 			fbos.unbindCurrentFrameBuffer();
 			
@@ -211,8 +212,8 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(lights, camera);
-			/* render part except water and gui*/
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, 8));
+			/* render part except water and GUI*/
 			waterRenderer.render(waters, camera); 		// render water
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
