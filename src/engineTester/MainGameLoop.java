@@ -212,7 +212,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, 8));
+			renderer.render(lights, camera, new Vector4f(0, 1, 0, 1));
 			/* render part except water and GUI*/
 			waterRenderer.render(waters, camera); 		// render water
 			guiRenderer.render(guis);
