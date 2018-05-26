@@ -152,14 +152,13 @@ public class MainGameLoop {
 		entities.add(lampEntity);
 		
 		// Load water
-		WaterShader waterShader = new WaterShader();
-		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix());
-		List<WaterTile> waters = new ArrayList<WaterTile> ();
-		waters.add(new WaterTile(75, -75, 0));
-		
 		WaterFrameBuffers fbos = new WaterFrameBuffers();
-		GuiTexture gui3 = new GuiTexture(fbos.getReflectionTexture(), new Vector2f(-0.5f, 0.5f), new Vector2f(0.5f, 0.5f));
-		guis.add(gui3);
+		WaterShader waterShader = new WaterShader();
+		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), fbos);
+		List<WaterTile> waters = new ArrayList<WaterTile> ();
+		WaterTile water = new WaterTile(75, -75, 0);
+		waters.add(water);
+		
 		
 		while(!Display.isCloseRequested()) {
 	
