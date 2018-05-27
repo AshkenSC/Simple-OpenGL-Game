@@ -27,9 +27,9 @@ public class MasterRenderer {
 
 	// They determine sky color
 	// baby blue: 0.9r 1.0g 1.0b
-	private static final float RED = 0.1f;
-	private static final float GREEN = 0.2f;
-	private static final float BLUE = 0.2f;
+	private static final float RED = 0.9f;
+	private static final float GREEN = 1.0f;
+	private static final float BLUE = 1.0f;
 	
 	private Matrix4f projectionMatrix;
 	
