@@ -20,10 +20,13 @@ import entities.Light;
 public class WaterRenderer {
 
 	private static final String DUDV_MAP = "waterDUDV";
+	private static final float WAVE_SPEED = 0.03f;
 			
 	private RawModel quad;
 	private WaterShader shader;
 	private WaterFrameBuffers fbos;
+	
+	private float moveFactor = 0;
 	
 	private int dudvTexture;
 
@@ -53,6 +56,9 @@ public class WaterRenderer {
 	private void prepareRender(Camera camera){
 		shader.start();
 		shader.loadViewMatrix(camera);
+		moveFactor += WAVE_SPEED * DisplayManager.getFrameTimeSeconds();
+		moveFactor %= 1;
+		shader.loadMoveFactor(moveFactor);
 		GL30.glBindVertexArray(quad.getVaoID());
 		GL20.glEnableVertexAttribArray(0);
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -70,7 +76,7 @@ public class WaterRenderer {
 	}
 
 	private void setUpVAO(Loader loader) {
-		// Just x and z vectex positions here, y is set to 0 in v.shader
+		// Just x and z vertex positions here, y is set to 0 in v.shader
 		float[] vertices = { -1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1 };
 		quad = loader.loadToVAO(vertices, 2);
 	}
