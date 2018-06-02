@@ -110,10 +110,10 @@ public class MainGameLoop {
         
         // load lights
 		List<Light> lights = new ArrayList<Light>();
-		lights.add(new Light(new Vector3f(0, 1000, -7000), new Vector3f(0.4f, 0.4f, 0.4f)));
-		lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
-		lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
-		lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
+		lights.add(new Light(new Vector3f(0, 5000, -3500), new Vector3f(0.8f, 0.8f, 0.8f)));
+		//lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
+		//lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
+		//lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
 		
 		// load lamps
 		// CAUTION: lamps x and z should be the same as the lights' to pretend light is from lamps.
@@ -156,7 +156,7 @@ public class MainGameLoop {
 		WaterShader waterShader = new WaterShader();
 		WaterRenderer waterRenderer = new WaterRenderer(loader, waterShader, renderer.getProjectionMatrix(), fbos);
 		List<WaterTile> waters = new ArrayList<WaterTile> ();
-		WaterTile water = new WaterTile(75, -75, 0);
+		WaterTile water = new WaterTile(75, -175, 0);
 		waters.add(water);
 		
 		

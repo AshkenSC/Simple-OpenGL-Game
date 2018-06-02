@@ -23,7 +23,7 @@ uniform float numberOfRows;
 uniform vec2 offset;
 
 // set density and gradient of fog
-const float density = 0.0035;
+const float density = 0.0005;
 const float gradient = 1.5;
 
 uniform vec4 plane;	// Define the plane in the java code instead to avoid hard coding in shader.
