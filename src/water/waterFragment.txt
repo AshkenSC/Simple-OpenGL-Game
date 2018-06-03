@@ -11,7 +11,7 @@ uniform sampler2D dudvMap;
 
 uniform float moveFactor;
 
-const float waveStrength = 0.04;
+const float waveStrength = 0.1;
 
 void main(void) {
 
@@ -33,6 +33,6 @@ void main(void) {
 	vec4 reflectColour = texture(reflectionTexture, reflectTexCoords + vec2(0.1, 0.0));
 	vec4 refractColour = texture(refractionTexture, refractTexCoords);
 	
-	out_Color = mix(reflectColour, refractColour, 0.5);
+	out_Color = mix(reflectColour, refractColour, 0.75);
 
 }

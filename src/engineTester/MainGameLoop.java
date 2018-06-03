@@ -201,10 +201,8 @@ public class MainGameLoop {
 				renderer.processEntity(entity);
 			}
 			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
-			/* render part except water and gui*/
-			fbos.unbindCurrentFrameBuffer();
+			//fbos.unbindCurrentFrameBuffer();
 			
-			/* render part except water and gui*/
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -220,6 +218,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
+			fbos.unbindCurrentFrameBuffer();
 			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
 			/* render part except water and GUI*/
 			waterRenderer.render(waters, camera); 		// render water
