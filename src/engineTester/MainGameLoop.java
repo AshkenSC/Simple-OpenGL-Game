@@ -110,10 +110,10 @@ public class MainGameLoop {
         
         // load lights
 		List<Light> lights = new ArrayList<Light>();
-		lights.add(new Light(new Vector3f(0, 5000, -3500), new Vector3f(0.8f, 0.8f, 0.8f)));
-		//lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
-		//lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
-		//lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
+		lights.add(new Light(new Vector3f(0, 5000, -3500), new Vector3f(0.9f, 0.9f, 0.8f)));
+		lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
+		lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
+		lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
 		
 		// load lamps
 		// CAUTION: lamps x and z should be the same as the lights' to pretend light is from lamps.
@@ -173,9 +173,18 @@ public class MainGameLoop {
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
 			// stuff you want to render
-			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	// Enable clip plane
+			
+			// enable clip plane
+			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
+			// Render reflection texture
 			fbos.bindReflectionFrameBuffer();
-			/* render part except water and gui*/
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
+			
+			// Render refraction texture
+			fbos.bindRefractionFrameBuffer();
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
+			
+			/* render part except water and GUI*/
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -191,7 +200,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, 8));
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
 			/* render part except water and gui*/
 			fbos.unbindCurrentFrameBuffer();
 			
@@ -211,7 +220,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			renderer.render(lights, camera, new Vector4f(0, 1, 0, 1));
+			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
 			/* render part except water and GUI*/
 			waterRenderer.render(waters, camera); 		// render water
 			guiRenderer.render(guis);
