@@ -63,9 +63,11 @@ public class MainGameLoop {
 		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
 		
 		// load trees
-		RawModel model = OBJLoader.loadObjModel("lowPolyTree", loader);
-        
-        TexturedModel staticModel = new TexturedModel(model,new ModelTexture(loader.loadTexture("lowPolyTree")));
+		RawModel treeModel1 = OBJLoader.loadObjModel("lowPolyTree", loader);
+		TexturedModel staticTreeModel1 = new TexturedModel(treeModel1,new ModelTexture(loader.loadTexture("lowPolyTree")));
+		
+		RawModel treeModel2 = OBJLoader.loadObjModel("tree", loader);
+        TexturedModel staticTreeModel2 = new TexturedModel(treeModel2,new ModelTexture(loader.loadTexture("tree")));
         
         // load grass
         TexturedModel grass = new TexturedModel(OBJLoader.loadObjModel("grassModel", loader), 
@@ -96,7 +98,14 @@ public class MainGameLoop {
         		float x = random.nextFloat() * 800 - 400;
         		float z = random.nextFloat() * -600;
         		float y = terrain.getHeightOfTerrain(x, z);
-        		entities.add(new Entity(staticModel, new Vector3f(x, y, z),0,0,0,1));
+        		// load a random tree
+        		if(random.nextFloat() > 0.5f) {
+        			entities.add(new Entity(staticTreeModel1, new Vector3f(x, y, z),0,0,0,0.85f));
+        		}
+        		else {
+        			entities.add(new Entity(staticTreeModel2, new Vector3f(x, y, z),0,0,0,7));
+        		}
+        		
         	}
         	if (i % 2 == 0) {
         		float x = random.nextFloat() * 800 - 400;
