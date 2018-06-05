@@ -12,7 +12,7 @@ uniform sampler2D dudvMap;
 
 uniform float moveFactor;
 
-const float waveStrength = 0.1;
+const float waveStrength = 0.02;
 
 void main(void) {
 
@@ -36,7 +36,8 @@ void main(void) {
 	
 	vec3 viewVector = normalize(toCameraVector);
 	float refractiveFactor = dot(viewVector, vec3(0.0, 1.0, 0.0));
+	refractiveFactor = pow(refractiveFactor, 0.7);
 	
-	out_Color = mix(reflectColour, refractColour, 0.9);
+	out_Color = mix(reflectColour, refractColour, refractiveFactor);
 	out_Color = mix(out_Color, vec4(0.0, 0.3, 0.5, 1.0), 0.2);
 }

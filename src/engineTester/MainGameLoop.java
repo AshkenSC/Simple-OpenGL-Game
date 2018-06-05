@@ -119,7 +119,7 @@ public class MainGameLoop {
         
         // load lights
 		List<Light> lights = new ArrayList<Light>();
-		lights.add(new Light(new Vector3f(0, 5000, -3500), new Vector3f(0.9f, 0.9f, 0.8f)));
+		lights.add(new Light(new Vector3f(0, 8000, -1500), new Vector3f(0.9f, 0.9f, 0.8f)));
 		lights.add(new Light(new Vector3f(0, 15, -60), new Vector3f(2, 0, 0), new Vector3f(1, 0.001f, 0.001f)));
 		lights.add(new Light(new Vector3f(0, 15, -130), new Vector3f(1, 0, 8), new Vector3f(1, 0.001f, 0.002f)));
 		lights.add(new Light(new Vector3f(0, 15, -195), new Vector3f(2, 2, 0), new Vector3f(1, 0.001f, 0.002f)));
