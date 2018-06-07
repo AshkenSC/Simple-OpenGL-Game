@@ -10,6 +10,7 @@ uniform sampler2D reflectionTexture;
 uniform sampler2D refractionTexture;
 uniform sampler2D dudvMap;
 uniform sampler2D normalMap;
+uniform vec3 lightColour;
 
 uniform float moveFactor;
 
@@ -40,8 +41,10 @@ void main(void) {
 	refractiveFactor = pow(refractiveFactor, 0.7);
 	
 	vec4 normalMapColour = texture(normalMap, distortedTexCoords);
+	vec3 normal = vec3(normalMapColour * 2.0 - 1.0, normalMapColour.b, normalMapColour.g * 2.0 - 1.0);
+	normal = normalize(normal);
 	
 	out_Color = mix(reflectColour, refractColour, refractiveFactor);
 	out_Color = mix(out_Color, vec4(0.0, 0.3, 0.5, 1.0), 0.2);
-	out_Color = normalMapColour;
+	
 }

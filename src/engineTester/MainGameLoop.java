@@ -230,7 +230,7 @@ public class MainGameLoop {
 			fbos.unbindCurrentFrameBuffer();
 			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
 			/* render part except water and GUI*/
-			waterRenderer.render(waters, camera); 		// render water
+			waterRenderer.render(waters, camera, lights.get(0)); 		// render water
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
