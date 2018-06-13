@@ -36,7 +36,7 @@ void main(void) {
 	refractTexCoords += totalDistortion;
 	refractTexCoords = clamp(refractTexCoords, 0.001, 0.999);
 	
-	vec4 reflectColour = texture(reflectionTexture, reflectTexCoords + vec2(0.1, 0.0));
+	vec4 reflectColour = texture(reflectionTexture, reflectTexCoords);
 	vec4 refractColour = texture(refractionTexture, refractTexCoords);
 	
 	vec3 viewVector = normalize(toCameraVector);
@@ -44,7 +44,6 @@ void main(void) {
 	refractiveFactor = pow(refractiveFactor, 0.7);
 	
 	vec4 normalMapColour = texture(normalMap, distortedTexCoords);
-<<<<<<< HEAD
 	vec3 normal = vec3(normalMapColour.r * 2.0 - 1.0, normalMapColour.b, normalMapColour.g * 2.0 - 1.0);
 	normal = normalize(normal);
 	
@@ -55,12 +54,5 @@ void main(void) {
 	
 	out_Color = mix(reflectColour, refractColour, refractiveFactor);
 	out_Color = mix(out_Color, vec4(0.0, 0.3, 0.5, 1.0), 0.2) + vec4(specularHighlights, 0.0);
-=======
-	vec3 normal = vec3(normalMapColour * 2.0 - 1.0, normalMapColour.b, normalMapColour.g * 2.0 - 1.0);
-	normal = normalize(normal);
-	
-	out_Color = mix(reflectColour, refractColour, refractiveFactor);
-	out_Color = mix(out_Color, vec4(0.0, 0.3, 0.5, 1.0), 0.2);
->>>>>>> 51b43c32cfb75494110338dfad5defd987fe7705
 	
 }
