@@ -187,11 +187,11 @@ public class MainGameLoop {
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
 			// Render reflection texture
 			fbos.bindReflectionFrameBuffer();
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
+			renderer.render(lights, camera, new Vector4f(0, 1, 0, -water.getHeight()));
 			
-			// Render refraction texture
+			// Render re-fraction texture
 			fbos.bindRefractionFrameBuffer();
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
+			renderer.render(lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
 			
 			/* render part except water and GUI*/
 			if (player.getPosition().x > 0)
