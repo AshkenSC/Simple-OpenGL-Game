@@ -181,7 +181,7 @@ public class MainGameLoop {
 			}
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
-			// stuff you want to render
+			// Render part
 			
 			// enable clip plane
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
@@ -230,7 +230,10 @@ public class MainGameLoop {
 			fbos.unbindCurrentFrameBuffer();
 			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
 			/* render part except water and GUI*/
-			waterRenderer.render(waters, camera, lights.get(0)); 		// render water
+			
+			// render water
+			waterRenderer.render(waters, camera, lights.get(0)); 	
+			// render GUI
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}

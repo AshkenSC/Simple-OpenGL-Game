@@ -14,6 +14,7 @@ import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import models.TexturedModel;
+import normalMappingRenderer.NormalMappingRenderer;
 import shaders.StaticShader;
 import shaders.TerrainShader;
 import skybox.SkyboxRenderer;
@@ -21,15 +22,15 @@ import terrains.Terrain;
 
 public class MasterRenderer {
 	
+	// These variables determine sky color
+	// baby blue: 0.9r 1.0g 1.0b
+	public static final float RED = 0.9f;
+	public static final float GREEN = 1.0f;
+	public static final float BLUE = 1.0f;
+	
 	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;
 	private static final float FAR_PLANE = 1000.0f;
-
-	// They determine sky color
-	// baby blue: 0.9r 1.0g 1.0b
-	private static final float RED = 0.9f;
-	private static final float GREEN = 1.0f;
-	private static final float BLUE = 1.0f;
 	
 	private Matrix4f projectionMatrix;
 	
@@ -39,7 +40,10 @@ public class MasterRenderer {
 	private TerrainRenderer terrainRenderer;
 	private TerrainShader terrainShader = new TerrainShader();
 	
+	private NormalMappingRenderer normalMapRenderer;
+	
 	private Map<TexturedModel, List<Entity>> entities = new HashMap<TexturedModel, List<Entity>>();
+	private Map<TexturedModel, List<Entity>> normalMapEntities = new HashMap<TexturedModel, List<Entity>>();
 	private List<Terrain> terrains = new ArrayList<Terrain>();
 	
 	private SkyboxRenderer skyboxRenderer;
@@ -52,6 +56,7 @@ public class MasterRenderer {
 		renderer = new EntityRenderer(shader, projectionMatrix);
 		terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix);
 		skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
+		normalMapRenderer = new NormalMappingRenderer(projectionMatrix);
 	}
 	
 	public static void enableCulling()
@@ -109,10 +114,28 @@ public class MasterRenderer {
 		
 	}
 	
+	public void processNormalMapEntity(Entity entity)
+	{
+		TexturedModel entityModel = entity.getModel();
+		List<Entity> batch = normalMapEntities.get(entityModel);
+		if(batch!=null)
+		{
+			batch.add(entity);
+		}
+		else
+		{
+			List<Entity> newBatch = new ArrayList<Entity>();
+			newBatch.add(entity);
+			normalMapEntities.put(entityModel, newBatch);
+		}
+		
+	}
+	
 	public void cleanUp()
 	{
 		shader.cleanUp();
 		terrainShader.cleanUp();
+		normalMapRenderer.cleanUp();
 	}
 	
 	public void prepare()
