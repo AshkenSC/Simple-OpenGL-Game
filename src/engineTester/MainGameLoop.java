@@ -89,8 +89,10 @@ public class MainGameLoop {
         flower.getTexture().setHasTransparency(true);
         flower.getTexture().setUseFakeLighting(true);
         
-	    // set random entity numbers and locations
         List<Entity> entities = new ArrayList<Entity>();
+        List<Entity> normalMapEntites = new ArrayList<Entity>();
+        
+	    // set random entity numbers and locations
         Random random = new Random();
         for(int i=0; i<500 ;i++){
         	if (i % 3 == 0)		// in order to reduce the number of trees to 1/3 of grass
@@ -194,6 +196,7 @@ public class MainGameLoop {
 			renderer.render(lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
 			
 			/* render part except water and GUI*/
+			// render objects above water surface
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -212,6 +215,7 @@ public class MainGameLoop {
 			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
 			//fbos.unbindCurrentFrameBuffer();
 			
+			// render objects below water surface
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -227,6 +231,7 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
+			
 			fbos.unbindCurrentFrameBuffer();
 			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
 			/* render part except water and GUI*/

@@ -70,6 +70,23 @@ public class MasterRenderer {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
+	/* an integrated rendering method, not for current program structure
+	public void renderScene(List<Entity> entities, List<Entity> normalEntities, List<Terrain> terrains, 
+							List<Light> lights, Camera camera, Vector4f clipPlane) 
+	{
+		for (Terrain terrain : terrains) {
+			processTerrain(terrain);
+		}
+		for (Entity entity : entities) {
+			processEntity(entity);
+		}
+		for (Entity entity : normalEntities {
+			processNormalMapEntity(entity);
+		}
+		render(lights, camera, clipPlane);
+	}
+	*/
+	
 	public void render(List<Light> lights, Camera camera, Vector4f clipPlane)
 	{
 		prepare();
@@ -80,6 +97,7 @@ public class MasterRenderer {
 		shader.loadViewMatrix(camera);
 		renderer.render(entities);
 		shader.stop();
+		normalMapRenderer.render(normalMapEntities, clipPlane, lights, camera);
 		terrainShader.start();
 		terrainShader.loadClipPlane(clipPlane);
 		terrainShader.loadSkyColour(RED, GREEN, BLUE);
@@ -90,6 +108,7 @@ public class MasterRenderer {
 		skyboxRenderer.render(camera, RED, GREEN, BLUE);
 		terrains.clear();
 		entities.clear();
+		normalMapEntities.clear();
 	}
 	
 	public void processTerrain(Terrain terrain)
