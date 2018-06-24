@@ -70,7 +70,7 @@ public class MasterRenderer {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 	
-	/* an integrated rendering method, not for current program structure
+	/* an integrated rendering method, not for current program structure*/
 	public void renderScene(List<Entity> entities, List<Entity> normalEntities, List<Terrain> terrains, 
 							List<Light> lights, Camera camera, Vector4f clipPlane) 
 	{
@@ -80,12 +80,12 @@ public class MasterRenderer {
 		for (Entity entity : entities) {
 			processEntity(entity);
 		}
-		for (Entity entity : normalEntities {
+		for (Entity entity : normalEntities) {
 			processNormalMapEntity(entity);
 		}
 		render(lights, camera, clipPlane);
 	}
-	*/
+	
 	
 	public void render(List<Light> lights, Camera camera, Vector4f clipPlane)
 	{

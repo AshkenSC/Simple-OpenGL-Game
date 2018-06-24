@@ -189,10 +189,56 @@ public class MainGameLoop {
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
 			// Render reflection texture
 			fbos.bindReflectionFrameBuffer();
+			
+			// render functions
+			if (player.getPosition().x > 0)
+			{
+				player.move(terrain);
+			}
+			else
+			{
+				player.move(terrain2);
+			}
+			renderer.processEntity(player);
+			renderer.processTerrain(terrain);
+			renderer.processTerrain(terrain2);
+			for(Entity entity:entities)
+			{
+				renderer.processEntity(entity);
+			}
+			for(Entity entity:normalMapEntities)
+			{
+				renderer.processEntity(entity);
+			}
+			// render functions
+			
 			renderer.render(lights, camera, new Vector4f(0, 1, 0, -water.getHeight()));
 			
 			// Render re-fraction texture
 			fbos.bindRefractionFrameBuffer();
+			
+			// render functions
+			if (player.getPosition().x > 0)
+			{
+				player.move(terrain);
+			}
+			else
+			{
+				player.move(terrain2);
+			}
+			renderer.processEntity(player);
+			renderer.processTerrain(terrain);
+			renderer.processTerrain(terrain2);
+			for(Entity entity:entities)
+			{
+				renderer.processEntity(entity);
+			}
+			for(Entity entity:normalMapEntities)
+			{
+				renderer.processEntity(entity);
+			}
+			// render functions
+			
 			renderer.render(lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
 			
 			/* render part except water and GUI*/
