@@ -89,9 +89,9 @@ public class MainGameLoop {
         flower.getTexture().setHasTransparency(true);
         flower.getTexture().setUseFakeLighting(true);
         
+        // load lists of entities and normal map entities
         List<Entity> entities = new ArrayList<Entity>();
-        List<Entity> normalMapEntites = new ArrayList<Entity>();
-        
+        List<Entity> normalMapEntities = new ArrayList<Entity>();
 	    // set random entity numbers and locations
         Random random = new Random();
         for(int i=0; i<500 ;i++){
@@ -212,6 +212,10 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
+			for(Entity entity:normalMapEntities)
+			{
+				renderer.processEntity(entity);
+			}
 			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
 			//fbos.unbindCurrentFrameBuffer();
 			
@@ -228,6 +232,10 @@ public class MainGameLoop {
 			renderer.processTerrain(terrain);
 			renderer.processTerrain(terrain2);
 			for(Entity entity:entities)
+			{
+				renderer.processEntity(entity);
+			}
+			for(Entity entity:normalMapEntities)
 			{
 				renderer.processEntity(entity);
 			}
