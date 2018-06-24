@@ -139,8 +139,8 @@ public class MainGameLoop {
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -195), 0, 0, 0, 1));
 		
 		// load player
-		RawModel playerModel = OBJLoader.loadObjModel("dragon", loader);
-		TexturedModel texturedPlayer = new TexturedModel(playerModel, new ModelTexture(loader.loadTexture("yellow")));
+		RawModel playerModel = OBJLoader.loadObjModel("person", loader);
+		TexturedModel texturedPlayer = new TexturedModel(playerModel, new ModelTexture(loader.loadTexture("playerTexture")));
 		Player player = new Player(texturedPlayer, new Vector3f(50, -3, -100), 0, 180, 0, 1);
 		
 		// load GUI
