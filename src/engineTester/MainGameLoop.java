@@ -187,8 +187,7 @@ public class MainGameLoop {
 			}
 			System.out.println(picker.getCurrentRay());	// To test if the mouse picker is working
 			
-			// Render part
-			
+			// player movement
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -206,125 +205,21 @@ public class MainGameLoop {
 			camera.getPosition().y -= distance;
 			camera.invertPitch();
 			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, 1, 0, -water.getHeight()+1));
+			renderer.processEntity(player);
 			camera.getPosition().y += distance;
 			camera.invertPitch();
 			
 			// render re-fraction texture
 			fbos.bindRefractionFrameBuffer();
 			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
-			
-			/* obsolete re-fraction rendering codes
-			if (player.getPosition().x > 0)
-			{
-				player.move(terrain);
-			}
-			else
-			{
-				player.move(terrain2);
-			}
 			renderer.processEntity(player);
-			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
-			for(Entity entity:entities)
-			{
-				renderer.processEntity(entity);
-			}
-			for(Entity entity:normalMapEntities)
-			{
-				renderer.processEntity(entity);
-			}
-			
-			renderer.render(lights, camera, new Vector4f(0, 1, 0, -water.getHeight()));
-			
-			// Render re-fraction texture
-			fbos.bindRefractionFrameBuffer();
-			
-			obsolete rendering codes*/
 			
 			// render to screen
 			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);
 			fbos.unbindCurrentFrameBuffer();
 			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));
+			renderer.processEntity(player);
 			waterRenderer.render(waters, camera, lights.get(0));
-			guiRenderer.render(guis);
-			
-			/* obsolete rendering codes
-			if (player.getPosition().x > 0)
-			{
-				player.move(terrain);
-			}
-			else
-			{
-				player.move(terrain2);
-			}
-			renderer.processEntity(player);
-			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
-			for(Entity entity:entities)
-			{
-				renderer.processEntity(entity);
-			}
-			for(Entity entity:normalMapEntities)
-			{
-				renderer.processEntity(entity);
-			}
-			// render functions
-			
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
-			
-			/* render part except water and GUI*/
-			// render objects above water surface
-			/*
-			if (player.getPosition().x > 0)
-			{
-				player.move(terrain);
-			}
-			else
-			{
-				player.move(terrain2);
-			}
-			renderer.processEntity(player);
-			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
-			for(Entity entity:entities)
-			{
-				renderer.processEntity(entity);
-			}
-			for(Entity entity:normalMapEntities)
-			{
-				renderer.processEntity(entity);
-			}
-			renderer.render(lights, camera, new Vector4f(0, -1, 0, 15));
-			//fbos.unbindCurrentFrameBuffer();
-			
-			// render objects below water surface
-			if (player.getPosition().x > 0)
-			{
-				player.move(terrain);
-			}
-			else
-			{
-				player.move(terrain2);
-			}
-			renderer.processEntity(player);
-			renderer.processTerrain(terrain);
-			renderer.processTerrain(terrain2);
-			for(Entity entity:entities)
-			{
-				renderer.processEntity(entity);
-			}
-			for(Entity entity:normalMapEntities)
-			{
-				renderer.processEntity(entity);
-			}
-			
-			fbos.unbindCurrentFrameBuffer();
-			renderer.render(lights, camera, new Vector4f(0, 1, -15, 1));
-			/* render part except water and GUI*/
-			
-			// render water
-			waterRenderer.render(waters, camera, lights.get(0)); 	
-			// render GUI
 			guiRenderer.render(guis);
 			DisplayManager.updateDisplay();
 		}
