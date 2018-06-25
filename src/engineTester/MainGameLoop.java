@@ -189,6 +189,15 @@ public class MainGameLoop {
 			
 			// Render part
 			
+			if (player.getPosition().x > 0)
+			{
+				player.move(terrain);
+			}
+			else
+			{
+				player.move(terrain2);
+			}
+			
 			// enable clip plane
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
 			// render reflection texture
@@ -229,10 +238,17 @@ public class MainGameLoop {
 			
 			// Render re-fraction texture
 			fbos.bindRefractionFrameBuffer();
-			render functions*/
 			
+			obsolete rendering codes*/
 			
-			// render functions
+			// render to screen
+			GL11.glDisable(GL30.GL_CLIP_DISTANCE0);
+			fbos.unbindCurrentFrameBuffer();
+			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));
+			waterRenderer.render(waters, camera, lights.get(0));
+			guiRenderer.render(guis);
+			
+			/* obsolete rendering codes
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -258,6 +274,7 @@ public class MainGameLoop {
 			
 			/* render part except water and GUI*/
 			// render objects above water surface
+			/*
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
