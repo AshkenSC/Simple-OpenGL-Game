@@ -74,6 +74,11 @@ public class Camera {
 		return roll;
 	}
 	
+	// a pitch invert function according to ThinMatrix
+	public void invertPitch() {
+		pitch = -pitch;
+	}
+	
 	private void calculateCameraPosition(float horizDistance, float verticDistance)
 	{
 		float theta = player.getRotY() +angleAroundPlayer;
@@ -135,5 +140,4 @@ public class Camera {
 			angleAroundPlayer -= angleChange;	
 		}
 	}
-
 }

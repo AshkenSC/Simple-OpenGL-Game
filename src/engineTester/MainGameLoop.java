@@ -61,6 +61,10 @@ public class MainGameLoop {
 		
 		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightMap");
 		Terrain terrain2 = new Terrain(-1, -1, loader, texturePack, blendMap, "heightMap");
+		// put the two terrains into a list
+		List<Terrain> terrains = new ArrayList<Terrain>();
+		terrains.add(terrain);
+		terrains.add(terrain2);
 		
 		// load trees
 		RawModel treeModel1 = OBJLoader.loadObjModel("lowPolyTree", loader);
@@ -189,6 +193,12 @@ public class MainGameLoop {
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
 			// Render reflection texture
 			fbos.bindReflectionFrameBuffer();
+			float distance = 2 * (camera.getPosition().y - water.getHeight());
+			camera.getPosition().y -= distance;
+			camera.invertPitch();
+			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, 1, 0, -water.getHeight()+1));
+			camera.getPosition().y += distance;
+			camera.invertPitch();
 			
 			// render functions
 			if (player.getPosition().x > 0)
