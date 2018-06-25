@@ -191,7 +191,7 @@ public class MainGameLoop {
 			
 			// enable clip plane
 			GL11.glEnable(GL30.GL_CLIP_DISTANCE0);	
-			// Render reflection texture
+			// render reflection texture
 			fbos.bindReflectionFrameBuffer();
 			float distance = 2 * (camera.getPosition().y - water.getHeight());
 			camera.getPosition().y -= distance;
@@ -200,7 +200,11 @@ public class MainGameLoop {
 			camera.getPosition().y += distance;
 			camera.invertPitch();
 			
-			// render functions
+			// render re-fraction texture
+			fbos.bindRefractionFrameBuffer();
+			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, water.getHeight()));
+			
+			/* obsolete re-fraction rendering codes
 			if (player.getPosition().x > 0)
 			{
 				player.move(terrain);
@@ -220,12 +224,13 @@ public class MainGameLoop {
 			{
 				renderer.processEntity(entity);
 			}
-			// render functions
 			
 			renderer.render(lights, camera, new Vector4f(0, 1, 0, -water.getHeight()));
 			
 			// Render re-fraction texture
 			fbos.bindRefractionFrameBuffer();
+			render functions*/
+			
 			
 			// render functions
 			if (player.getPosition().x > 0)
