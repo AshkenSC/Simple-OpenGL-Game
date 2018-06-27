@@ -19,6 +19,7 @@ import guis.GuiRenderer;
 import guis.GuiTexture;
 import models.RawModel;
 import models.TexturedModel;
+import normalMappingObjConverter.NormalMappedObjLoader;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
@@ -142,6 +143,13 @@ public class MainGameLoop {
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -130), 0, 0, 0, 1));
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -195), 0, 0, 0, 1));
 		
+		// load barrel model with normal map texture
+		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), 
+													  new ModelTexture(loader.loadTexture("barrel")));
+		barrelModel.getTexture().setShineDamper(10);
+		barrelModel.getTexture().setReflectivity(0.5f);
+		normalMapEntities.add(new Entity(barrelModel, new Vector3f(50, 15, -205), 0, 0, 0, 1.0f));
+		
 		// load player
 		RawModel playerModel = OBJLoader.loadObjModel("person", loader);
 		TexturedModel texturedPlayer = new TexturedModel(playerModel, new ModelTexture(loader.loadTexture("playerTexture")));
@@ -153,7 +161,6 @@ public class MainGameLoop {
 		GuiTexture gui2 = new GuiTexture(loader.loadTexture("image"), new Vector2f(-0.8f, -0.75f), new Vector2f(0.15f, 0.15f));
 		guis.add(gui2);
 		guis.add(gui);
-		
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
