@@ -148,6 +148,7 @@ public class MainGameLoop {
 													  new ModelTexture(loader.loadTexture("barrel")));
 		barrelModel.getTexture().setShineDamper(10);
 		barrelModel.getTexture().setReflectivity(0.5f);
+		
 		normalMapEntities.add(new Entity(barrelModel, new Vector3f(50, 15, -205), 0, 0, 0, 1.0f));
 		
 		// load player
