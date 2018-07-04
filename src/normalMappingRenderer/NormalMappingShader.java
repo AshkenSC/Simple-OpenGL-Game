@@ -40,6 +40,7 @@ public class NormalMappingShader extends ShaderProgram{
 		super.bindAttribute(0, "position");
 		super.bindAttribute(1, "textureCoordinates");
 		super.bindAttribute(2, "normal");
+		super.bindAttribute(3, "tangent");
 	}
 
 	@Override
