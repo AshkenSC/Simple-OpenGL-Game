@@ -26,7 +26,7 @@ const float gradient = 5.0;
 uniform vec4 plane;
 
 void main(void){
-	//pass_tangent = tangent;		// ERROR!!!
+	pass_tangent = tangent;		// ERROR!!!
 	vec4 worldPosition = transformationMatrix * vec4(position,1.0);
 	gl_ClipDistance[0] = dot(worldPosition, plane);
 	mat4 modelViewMatrix = viewMatrix * transformationMatrix;
