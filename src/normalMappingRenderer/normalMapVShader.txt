@@ -26,7 +26,8 @@ uniform vec4 plane;
 
 void main(void){
 
-	pass_tangent = tangent;
+	/*
+	//pass_tangent = tangent;
 	vec4 worldPosition = transformationMatrix * vec4(position,1.0);
 	gl_ClipDistance[0] = dot(worldPosition, plane);
 	mat4 modelViewMatrix = viewMatrix * transformationMatrix;
@@ -46,11 +47,31 @@ void main(void){
 		tang.y, bitang.y, norm.y,
 		tang.z, bitang.z, norm.z
 	);
-	
 	for(int i=0;i<4;i++){
 		toLightVector[i] = toTangentSpace * (lightPositionEyeSpace[i] - positionRelativeToCam.xyz);
 	}
 	toCameraVector = toTangentSpace * (-positionRelativeToCam.xyz);
+	toCameraVector = -positionRelativeToCam.xyz;
+	
+	float distance = length(positionRelativeToCam.xyz);
+	visibility = exp(-pow((distance*density),gradient));
+	visibility = clamp(visibility,0.0,1.0);
+	*/
+	
+	//pass_tangent = tangent;		// ERROR!!!
+	vec4 worldPosition = transformationMatrix * vec4(position,1.0);
+	gl_ClipDistance[0] = dot(worldPosition, plane);
+	mat4 modelViewMatrix = viewMatrix * transformationMatrix;
+	vec4 positionRelativeToCam = modelViewMatrix * vec4(position,1.0);
+	gl_Position = projectionMatrix * positionRelativeToCam;
+	
+	pass_textureCoordinates = (textureCoordinates/numberOfRows) + offset;
+	
+	vec3 surfaceNormal = (modelViewMatrix * vec4(normal,0.0)).xyz;
+	for(int i=0;i<4;i++){
+		toLightVector[i] = lightPositionEyeSpace[i] - positionRelativeToCam.xyz;
+	}
+	toCameraVector = -positionRelativeToCam.xyz;
 	
 	float distance = length(positionRelativeToCam.xyz);
 	visibility = exp(-pow((distance*density),gradient));
