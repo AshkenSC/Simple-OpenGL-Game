@@ -3,6 +3,7 @@ package textures;
 public class ModelTexture {
 
 	private int textureID;
+	private int normalMap;
 	
 	private float shineDamper = 1;
 	private float reflectivity = 0;
@@ -12,18 +13,26 @@ public class ModelTexture {
 	
 	private int numberOfRows = 1;
 	
+	public ModelTexture(int texture)
+	{
+		this.textureID = texture;
+	}	
+	
 	public int getNumberOfRows() {
 		return numberOfRows;
+	}
+
+	public int getNormalMap() {
+		return normalMap;
+	}
+
+	public void setNormalMap(int normalMap) {
+		this.normalMap = normalMap;
 	}
 
 	public void setNumberOfRows(int numberOfRows) {
 		this.numberOfRows = numberOfRows;
 	}
-
-	public ModelTexture(int texture)
-	{
-		this.textureID = texture;
-	}	
 	
 	public boolean isUseFakeLighting() {
 		return useFakeLighting;

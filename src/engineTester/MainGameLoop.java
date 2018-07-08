@@ -94,7 +94,7 @@ public class MainGameLoop {
         flower.getTexture().setHasTransparency(true);
         flower.getTexture().setUseFakeLighting(true);
         
-        // load lists of entities and normal map entities
+        // load lists of entities and NORMAL MAP entities
         List<Entity> entities = new ArrayList<Entity>();
         List<Entity> normalMapEntities = new ArrayList<Entity>();
 	    // set random entity numbers and locations
@@ -143,9 +143,10 @@ public class MainGameLoop {
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -130), 0, 0, 0, 1));
 		entities.add(new Entity(lamp, new Vector3f(0, 0, -195), 0, 0, 0, 1));
 		
-		// load barrel model with normal map texture
+		// load NORMAL-MAPPED barrel model
 		TexturedModel barrelModel = new TexturedModel(NormalMappedObjLoader.loadOBJ("barrel", loader), 
 													  new ModelTexture(loader.loadTexture("barrel")));
+		barrelModel.getTexture().setNormalMap(loader.loadTexture("barrelNormal"));
 		barrelModel.getTexture().setShineDamper(10);
 		barrelModel.getTexture().setReflectivity(0.5f);
 		
