@@ -1,7 +1,11 @@
 package fontMeshCreator;
 
+import javax.xml.soap.Text;
+
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+
+import fontRendering.TextMaster;
 
 /**
  * Represents a piece of text in the game.
@@ -59,7 +63,7 @@ public class GUIText {
 		this.position = position;
 		this.lineMaxSize = maxLineLength;
 		this.centerText = centered;
-		// load text
+		TextMaster.loadText(this);
 	}
 
 	/**
@@ -67,6 +71,7 @@ public class GUIText {
 	 */
 	public void remove() {
 		// remove text
+		TextMaster.removeText(this);
 	}
 
 	/**

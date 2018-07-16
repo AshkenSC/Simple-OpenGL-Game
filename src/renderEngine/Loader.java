@@ -39,7 +39,6 @@ public class Loader {
 		storeDataInAttributeList(1, 2, textureCoords);
 		storeDataInAttributeList(2, 3, normals);
 		unbindVAO();
-		//return new RawModel(vaoID, positions.length/3);
 		return new RawModel(vaoID, indices.length);
 	}
 	
