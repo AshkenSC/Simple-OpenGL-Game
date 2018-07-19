@@ -1,5 +1,6 @@
 package engineTester;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +16,9 @@ import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import entities.Player;
+import fontMeshCreator.FontType;
+import fontMeshCreator.GUIText;
+import fontRendering.TextMaster;
 import guis.GuiRenderer;
 import guis.GuiTexture;
 import models.RawModel;
@@ -42,7 +46,11 @@ public class MainGameLoop {
 		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
-				
+		TextMaster.init(loader);
+		
+		FontType font = new FontType(loader.loadTexture("segoeUI"), new File("res/segoeUI.fnt"));
+		GUIText text = new GUIText("Font rendering test text", 3, font, new Vector2f(0, 0), 1f, true);
+		
 		/* display dragon
 		RawModel model = OBJLoader.loadObjModel("dragon", loader);
 		TexturedModel staticModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("yellow")));
@@ -230,10 +238,13 @@ public class MainGameLoop {
 			renderer.processEntity(player);
 			waterRenderer.render(waters, camera, lights.get(0));
 			guiRenderer.render(guis);
+			TextMaster.render();
+			
 			DisplayManager.updateDisplay();
 		}
 		
-		// Clean-ups
+		// Clean Up
+		TextMaster.cleanUp();
 		fbos.cleanUp();
 		waterShader.cleanUp();
 		guiRenderer.cleanUp();
