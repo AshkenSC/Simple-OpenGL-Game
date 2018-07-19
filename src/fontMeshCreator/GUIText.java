@@ -82,7 +82,7 @@ public class GUIText {
 	}
 
 	/**
-	 * Set the colour of the text.
+	 * Set the color of the text.
 	 * 
 	 * @param r
 	 *            - red value, between 0 and 1.

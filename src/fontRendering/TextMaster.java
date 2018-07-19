@@ -21,6 +21,10 @@ public class TextMaster {
 		loader = theLoader;
 	}
 	
+	public static void render() {
+		renderer.render(texts);
+	}
+	
 	public static void loadText(GUIText text) {
 		FontType font = text.getFont();
 		TextMeshData data = font.loadText(text);
