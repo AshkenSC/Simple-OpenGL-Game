@@ -48,8 +48,9 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		TextMaster.init(loader);
 		
-		FontType font = new FontType(loader.loadTexture("segoeUI"), new File("res/segoeUI.fnt"));
+		FontType font = new FontType(loader.loadFontTextureAtlas("segoeUI"), new File("res/segoeUI.fnt"));
 		GUIText text = new GUIText("Font rendering test text", 3, font, new Vector2f(0, 0), 1f, true);
+		text.setColour(1, 0, 0);
 		
 		/* display dragon
 		RawModel model = OBJLoader.loadObjModel("dragon", loader);
