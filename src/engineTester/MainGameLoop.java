@@ -48,7 +48,7 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		TextMaster.init(loader);
 		
-		FontType font = new FontType(loader.loadFontTextureAtlas("segoeUI"), new File("res/segoeUI.fnt"));
+		FontType font = new FontType(loader.loadFontTextureAtlas("candara"), new File("res/segoeUI.fnt"));
 		GUIText text = new GUIText("font rendering test text", 3, font, new Vector2f(0.5f, 0.85f), 0.5f, true);
 		text.setColour(1, 0, 0);
 		
