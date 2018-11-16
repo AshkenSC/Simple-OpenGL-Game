@@ -49,8 +49,8 @@ public class MainGameLoop {
 		TextMaster.init(loader);
 		
 		FontType font = new FontType(loader.loadFontTextureAtlas("candara"), new File("res/candara.fnt"));
-		GUIText text = new GUIText("font rendering test text", 3, font, new Vector2f(0.5f, 0.85f), 0.5f, true);
-		text.setColour(1, 0, 0);
+		GUIText text = new GUIText("A sample string of text", 3, font, new Vector2f(0.5f, 0.85f), 0.5f, true);
+		text.setColour(0, 0, 0);
 		
 		/* display dragon
 		RawModel model = OBJLoader.loadObjModel("dragon", loader);

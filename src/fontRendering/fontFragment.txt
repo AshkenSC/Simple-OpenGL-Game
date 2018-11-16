@@ -13,7 +13,7 @@ const float edge = 0.1;
 void main(void) {
 
 	float distance = 1.0 - texture(fontAtlas, pass_textureCoords).a;
-	float alpha = 1.0 - smoonthstep(width, width + edge, distance);
+	float alpha = 1.0 - smoothstep(width, width + edge, distance);
 	
 	out_colour = vec4(colour, texture(fontAtlas, pass_textureCoords).a);
 	
