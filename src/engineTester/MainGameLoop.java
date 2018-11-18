@@ -49,7 +49,7 @@ public class MainGameLoop {
 		TextMaster.init(loader);
 		
 		FontType font = new FontType(loader.loadFontTextureAtlas("candara"), new File("res/candara.fnt"));
-		GUIText text = new GUIText("A sample string of text", 3, font, new Vector2f(0.0f, 0.4f), 0.5f, true);
+		GUIText text = new GUIText("A sample string of text", 3, font, new Vector2f(0.5f, 0.85f), 0.5f, true);
 		text.setColour(0, 0, 0);
 		
 		/* display dragon
