@@ -30,7 +30,8 @@ public class ParticleRenderer {
 	}
 	
 	protected void render(List<Particle> particles, Camera camera){
-
+		Matrix4f viewMatirx = Maths.createViewMatrix(camera);
+		prepare();
 	}
 
 	//The code below is for the updateModelViewMatrix() method
@@ -49,7 +50,12 @@ public class ParticleRenderer {
 	}
 	
 	private void prepare(){
-
+		shader.start();
+		GL30.glBindVertexArray(quad.getVaoID());
+		GL20.glEnableVertexAttribArray(0);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDepthMask(false);
 	}
 	
 	private void finishRendering(){
