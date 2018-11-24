@@ -21,7 +21,12 @@ public class ParticleRenderer {
 	private ParticleShader shader;
 	
 	protected ParticleRenderer(Loader loader, Matrix4f projectionMatrix){
-
+		quad = loader.loadToVAO(VERTICES, 2);
+		shader = new ParticleShader();
+		shader.start();
+		shader.loadProjectionMatrix(projectionMatrix);
+		shader.stop();
+		
 	}
 	
 	protected void render(List<Particle> particles, Camera camera){
