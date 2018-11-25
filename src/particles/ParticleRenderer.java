@@ -30,11 +30,14 @@ public class ParticleRenderer {
 	}
 	
 	protected void render(List<Particle> particles, Camera camera){
-		Matrix4f viewMatirx = Maths.createViewMatrix(camera);
+		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
 		prepare();
 		for(Particle particle : particles) {
-			
+			updateModelViewMatrix(particle.getPosition(), particle.getRotation(), 
+									particle.getScale(), viewMatrix);
+			GL11.glDrawArrays(GL11.GL_TRIANGLE_STRIP, 0, quad.getVertexCount());
 		}
+		finishRendering();
 	}
 
 	//The code below is for the updateModelViewMatrix() method
@@ -55,6 +58,19 @@ public class ParticleRenderer {
 	private void updateModelViewMatrix(Vector3f position, float rotation, float scale, Matrix4f viewMatrix) {
 		Matrix4f modelMatrix = new Matrix4f();
 		Matrix4f.translate(position, modelMatrix, modelMatrix);
+		modelMatrix.m00 = viewMatrix.m00;
+		modelMatrix.m01 = viewMatrix.m10;
+		modelMatrix.m02 = viewMatrix.m20;
+		modelMatrix.m10 = viewMatrix.m01;
+		modelMatrix.m11 = viewMatrix.m11;
+		modelMatrix.m12 = viewMatrix.m21;
+		modelMatrix.m20 = viewMatrix.m02;
+		modelMatrix.m21 = viewMatrix.m12;
+		modelMatrix.m22 = viewMatrix.m22;
+		Matrix4f.rotate((float)Math.toRadians(rotation), new Vector3f(0, 0, 1), modelMatrix, modelMatrix);
+		Matrix4f.scale(new Vector3f(scale, scale, scale), modelMatrix, modelMatrix);
+		Matrix4f modelViewMatrix = Matrix4f.mul(viewMatrix, modelMatrix, null);
+		shader.loadModelViewMatrix(modelViewMatrix);
 	}
 	
 	private void prepare(){
