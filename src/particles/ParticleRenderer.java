@@ -32,6 +32,9 @@ public class ParticleRenderer {
 	protected void render(List<Particle> particles, Camera camera){
 		Matrix4f viewMatirx = Maths.createViewMatrix(camera);
 		prepare();
+		for(Particle particle : particles) {
+			
+		}
 	}
 
 	//The code below is for the updateModelViewMatrix() method
@@ -47,6 +50,11 @@ public class ParticleRenderer {
 
 	protected void cleanUp(){
 		shader.cleanUp();
+	}
+	
+	private void updateModelViewMatrix(Vector3f position, float rotation, float scale, Matrix4f viewMatrix) {
+		Matrix4f modelMatrix = new Matrix4f();
+		Matrix4f.translate(position, modelMatrix, modelMatrix);
 	}
 	
 	private void prepare(){
