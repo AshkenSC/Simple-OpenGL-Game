@@ -83,7 +83,11 @@ public class ParticleRenderer {
 	}
 	
 	private void finishRendering(){
-
+		GL11.glDepthMask(true);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL20.glDisableVertexAttribArray(0);
+		GL30.glBindVertexArray(0);
+		shader.stop();
 	}
 
 }
