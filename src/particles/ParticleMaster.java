@@ -1,7 +1,9 @@
 package particles;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
 
 import org.lwjgl.util.vector.Matrix4f;
 
@@ -14,5 +16,16 @@ public class ParticleMaster {
 	
 	public static void init(Loader loader, Matrix4f projectionMatrix) {
 		renderer = new ParticleRenderer(loader, projectionMatrix);
+	}
+	
+	public static void updated() {
+		Iterator<Particle> iterator = particles.iterator();
+		while(iterator.hasNext()) {
+			Particle p = iterator.next();
+			boolean stillAlive = p.update();
+			if(!stillAlive) {
+				iterator.remove();
+			}
+		}
 	}
 }
