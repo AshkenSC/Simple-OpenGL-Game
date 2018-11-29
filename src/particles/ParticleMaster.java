@@ -38,4 +38,8 @@ public class ParticleMaster {
 		renderer.cleanUp();
 	}
 	
+	public static void addParticle(Particle particle) {
+		particles.add(particle);
+	}
+	
 }
