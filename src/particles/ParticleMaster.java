@@ -18,7 +18,7 @@ public class ParticleMaster {
 		renderer = new ParticleRenderer(loader, projectionMatrix);
 	}
 	
-	public static void updated() {
+	public static void update() {
 		Iterator<Particle> iterator = particles.iterator();
 		while(iterator.hasNext()) {
 			Particle p = iterator.next();
