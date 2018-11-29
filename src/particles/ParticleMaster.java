@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Matrix4f;
 
+import entities.Camera;
 import renderEngine.Loader;
 
 public class ParticleMaster {
@@ -28,4 +29,13 @@ public class ParticleMaster {
 			}
 		}
 	}
+	
+	public static void renderParticles(Camera camera) {
+		renderer.render(particles, camera);
+	}
+	
+	public static void cleanUp() {
+		renderer.cleanUp();
+	}
+	
 }
