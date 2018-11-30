@@ -24,6 +24,7 @@ import guis.GuiTexture;
 import models.RawModel;
 import models.TexturedModel;
 import normalMappingObjConverter.NormalMappedObjLoader;
+import particles.ParticleMaster;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
@@ -47,6 +48,8 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
 		TextMaster.init(loader);
+		MasterRenderer renderer = new MasterRenderer(loader);
+		ParticleMaster.init(loader, renderer.getProjectionMatrix());
 		
 		FontType font = new FontType(loader.loadFontTextureAtlas("candara"), new File("res/candara.fnt"));
 		GUIText text = new GUIText("A sample string of text", 3, font, new Vector2f(0.5f, 0.85f), 0.5f, true);
@@ -175,9 +178,8 @@ public class MainGameLoop {
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
-		// Load camera and master renderer
+		// Load camera
 		Camera camera = new Camera(player);
-		MasterRenderer renderer = new MasterRenderer(loader);
 
 		// Load mouse picker
 		MousePicker picker = new MousePicker(camera, renderer.getProjectionMatrix(), terrain);
