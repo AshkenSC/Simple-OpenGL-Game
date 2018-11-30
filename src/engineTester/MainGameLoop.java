@@ -247,6 +247,7 @@ public class MainGameLoop {
 		}
 		
 		// Clean Up
+		ParticleMaster.cleanUp();
 		TextMaster.cleanUp();
 		fbos.cleanUp();
 		waterShader.cleanUp();
