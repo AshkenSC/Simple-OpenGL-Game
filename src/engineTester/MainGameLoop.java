@@ -198,6 +198,7 @@ public class MainGameLoop {
 		while(!Display.isCloseRequested()) {
 	
 			camera.move();
+			ParticleMaster.update();
 			
 			// Mouse picker
 			picker.update();
@@ -240,6 +241,7 @@ public class MainGameLoop {
 			renderer.renderScene(entities, normalMapEntities, terrains, lights, camera, new Vector4f(0, -1, 0, 100000));
 			renderer.processEntity(player);
 			waterRenderer.render(waters, camera, lights.get(0));
+			ParticleMaster.renderParticles(camera);
 			guiRenderer.render(guis);
 			TextMaster.render();
 			
