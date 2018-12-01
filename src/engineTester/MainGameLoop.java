@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -24,6 +25,7 @@ import guis.GuiTexture;
 import models.RawModel;
 import models.TexturedModel;
 import normalMappingObjConverter.NormalMappedObjLoader;
+import particles.Particle;
 import particles.ParticleMaster;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
@@ -199,6 +201,11 @@ public class MainGameLoop {
 	
 			camera.move();
 			ParticleMaster.update();
+			
+			// test code, press Y to emit particles
+			if(Keyboard.isKeyDown(Keyboard.KEY_Y)) {
+				new Particle(new Vector3f(player.getPosition()), new Vector3f(0, 30, 0), 1, 4, 0, 1);
+			}
 			
 			// Mouse picker
 			picker.update();
