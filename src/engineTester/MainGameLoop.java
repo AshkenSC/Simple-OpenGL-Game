@@ -200,12 +200,7 @@ public class MainGameLoop {
 		while(!Display.isCloseRequested()) {
 	
 			camera.move();
-			ParticleMaster.update();
-			
-			// test code, press Y to emit particles
-			if(Keyboard.isKeyDown(Keyboard.KEY_Y)) {
-				new Particle(new Vector3f(player.getPosition()), new Vector3f(0, 30, 0), 1, 4, 0, 1);
-			}
+			ParticleMaster.update();			
 			
 			// Mouse picker
 			picker.update();
