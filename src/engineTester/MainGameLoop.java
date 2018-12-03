@@ -27,6 +27,7 @@ import models.TexturedModel;
 import normalMappingObjConverter.NormalMappedObjLoader;
 import particles.Particle;
 import particles.ParticleMaster;
+import particles.ParticleSystem;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
@@ -196,10 +197,16 @@ public class MainGameLoop {
 		WaterTile water = new WaterTile(75, -175, 0);
 		waters.add(water);
 		
+		// Load particle system
+		ParticleSystem system = new ParticleSystem(50, 25, 0.3f, 4);
 		
+		// game loop
 		while(!Display.isCloseRequested()) {
 	
 			camera.move();
+			
+			// particle generator
+			system.generateParticles(player.getPosition());
 			ParticleMaster.update();			
 			
 			// Mouse picker
