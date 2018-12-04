@@ -198,7 +198,7 @@ public class MainGameLoop {
 		waters.add(water);
 		
 		// Load particle system
-		ParticleSystem system = new ParticleSystem(50, 25, 0.3f, 4);
+		ParticleSystem system = new ParticleSystem(50, 25, 0.3f, 4, 1);
 		
 		// game loop
 		while(!Display.isCloseRequested()) {
