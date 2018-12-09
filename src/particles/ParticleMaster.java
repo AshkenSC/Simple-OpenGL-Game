@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.lwjgl.util.vector.Matrix4f;
 
@@ -21,14 +22,21 @@ public class ParticleMaster {
 	}
 	
 	public static void update() {
-		Iterator<Particle> iterator = particles.iterator();
-		while(iterator.hasNext()) {
-			Particle p = iterator.next();
-			boolean stillAlive = p.update();
-			if(!stillAlive) {
-				iterator.remove();
+		Iterator<Entry<ParticleTexture, List<Particle>>> mapIterator = particles.entrySet().iterator();
+		while(mapIterator.hasNext()) {
+			List<Particle> list = mapIterator.next().getValue();
+			Iterator<Particle> iterator = list.iterator();
+			while(iterator.hasNext()) {
+				Particle p = iterator.next();
+				boolean stillAlive = p.update();
+				if(!stillAlive) {
+					iterator.remove();
+					if(list.isEmpty()) {
+						mapIterator.remove();
+					}
+				}
 			}
-		}
+		}	
 	}
 	
 	public static void renderParticles(Camera camera) {
