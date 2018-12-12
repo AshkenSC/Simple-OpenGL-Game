@@ -8,6 +8,6 @@ uniform sampler2D particleTexture;
 
 void main(void){
 
-	out_colour = texture(particleTexture, textureCoords;
+	out_colour = texture(particleTexture, textureCoords);
 
 }
