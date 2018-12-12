@@ -28,6 +28,7 @@ import normalMappingObjConverter.NormalMappedObjLoader;
 import particles.Particle;
 import particles.ParticleMaster;
 import particles.ParticleSystem;
+import particles.ParticleTexture;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
@@ -197,8 +198,11 @@ public class MainGameLoop {
 		WaterTile water = new WaterTile(75, -175, 0);
 		waters.add(water);
 		
-		// Load particle system
-		ParticleSystem system = new ParticleSystem(50, 25, 0.3f, 4, 1);
+		// particle texture test
+		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("image"), 1);
+		
+		// load particle system
+		ParticleSystem system = new ParticleSystem(particleTexture, 50, 25, 0.3f, 4, 1);
 		system.randomizeRotation();
 		system.setDirection(new Vector3f(0, 1, 0), 0.1f);
 		system.setLifeError(0.1f);
