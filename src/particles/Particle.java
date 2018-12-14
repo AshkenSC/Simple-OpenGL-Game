@@ -1,5 +1,6 @@
 package particles;
 
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import entities.Player;
@@ -16,6 +17,10 @@ public class Particle {
 	
 	private ParticleTexture texture;
 	
+	private Vector2f texOffset1 = new Vector2f();
+	private Vector2f texOffset2 = new Vector2f();
+	private float blend;
+	
 	private float elapsedTime = 0;
 
 	public Particle(ParticleTexture texture, Vector3f position, Vector3f velocity, float gravityEffect, float lifeLength, float rotation,
@@ -29,6 +34,21 @@ public class Particle {
 		this.scale = scale;
 		ParticleMaster.addParticle(this);
 	}
+
+	public Vector2f getTexOffset1() {
+		return texOffset1;
+	}
+
+
+	public Vector2f getTexOffset2() {
+		return texOffset2;
+	}
+
+
+	public float getBlend() {
+		return blend;
+	}
+
 
 	public ParticleTexture getTexture() {
 		return texture;
