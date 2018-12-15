@@ -71,7 +71,7 @@ public class Particle {
 		Vector3f change = new Vector3f(velocity);
 		change.scale(DisplayManager.getFrameTimeSeconds());
 		Vector3f.add(change, position, position);
-		private void updateTextureCoordInfo()
+		updateTextureCoordInfo();
 		elapsedTime += DisplayManager.getFrameTimeSeconds();
 		return elapsedTime < lifeLength;
 	}
