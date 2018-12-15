@@ -77,7 +77,9 @@ public class Particle {
 	}
 	
 	private void updateTextureCoordInfo() {
-		
+		float lifeFactor = elapsedTime / lifeLength;
+		int stageCount = texture.getNumberOfRows() * texture.getNumberOfRows();
+		float atlasProgression = lifeFactor * stageCount;
 	}
 	
 }
