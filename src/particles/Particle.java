@@ -80,6 +80,9 @@ public class Particle {
 		float lifeFactor = elapsedTime / lifeLength;
 		int stageCount = texture.getNumberOfRows() * texture.getNumberOfRows();
 		float atlasProgression = lifeFactor * stageCount;
+		int index1 = (int) Math.floor(atlasProgression);
+		int index2 = index1 < stageCount - 1 ? index1 + 1 : index1;
+		this.blend = atlasProgression % 1;
 	}
 	
 }
