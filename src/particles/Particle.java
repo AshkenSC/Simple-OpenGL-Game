@@ -85,5 +85,9 @@ public class Particle {
 		this.blend = atlasProgression % 1;
 	}
 	
+	public void setTextureOffset(Vector2f offset, int index) {
+		
+	}
+	
 }
 
