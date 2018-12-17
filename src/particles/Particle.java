@@ -86,7 +86,10 @@ public class Particle {
 	}
 	
 	public void setTextureOffset(Vector2f offset, int index) {
-		
+		int column = index % texture.getNumberOfRows();
+		int row = index / texture.getNumberOfRows();
+		offset.x = (float) column / texture.getNumberOfRows();
+		offset.y = (float) row / texture.getNumberOfRows();
 	}
 	
 }
