@@ -10,6 +10,9 @@ uniform sampler2D particleTexture;
 
 void main(void){
 
-	out_colour = texture(particleTexture, textureCoords);
+	vec4 colour1 = texture(particleTexture, textureCoords1);
+	vec4 colour2 = texture(particleTexture, textureCoords2);
+	
+	out_colour = texture(particleTexture, blend);
 
 }
