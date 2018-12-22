@@ -1,6 +1,7 @@
 package particles;
 
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 
 import shaders.ShaderProgram;
 
@@ -31,6 +32,11 @@ public class ParticleShader extends ShaderProgram {
 	@Override
 	protected void bindAttributes() {
 		super.bindAttribute(0, "position");
+	}
+	
+	protected void loadTextureCoordInfo(Vector2f offset1, Vector2f offset2, float numRows,
+					float blend) {
+		
 	}
 
 	protected void loadModelViewMatrix(Matrix4f modelView) {
