@@ -36,7 +36,9 @@ public class ParticleShader extends ShaderProgram {
 	
 	protected void loadTextureCoordInfo(Vector2f offset1, Vector2f offset2, float numRows,
 					float blend) {
-		
+		super.load2DVector(location_texOffset1, offset1);
+		super.load2DVector(location_texOffset2, offset2);
+		super.load2DVector(location_texCoordInfo, new Vector2f(numRows, blend));
 	}
 
 	protected void loadModelViewMatrix(Matrix4f modelView) {
