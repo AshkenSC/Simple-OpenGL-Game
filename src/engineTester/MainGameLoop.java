@@ -199,7 +199,7 @@ public class MainGameLoop {
 		waters.add(water);
 		
 		// particle texture test
-		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("image"), 1);
+		ParticleTexture particleTexture = new ParticleTexture(loader.loadTexture("particleAtlas"), 1);
 		
 		// load particle system
 		ParticleSystem system = new ParticleSystem(particleTexture, 50, 25, 0.3f, 4, 1);
