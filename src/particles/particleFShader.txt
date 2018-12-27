@@ -13,10 +13,6 @@ void main(void){
 	vec4 colour1 = texture(particleTexture, textureCoords1);
 	vec4 colour2 = texture(particleTexture, textureCoords2);
 	
-<<<<<<< HEAD
 	out_colour = mix(colour1, colour2, blend);
-=======
-	out_colour = texture(particleTexture, blend);
->>>>>>> 1e511ad81e45d618c4c2fe0dcf7d1ebabd667224
 
 }
