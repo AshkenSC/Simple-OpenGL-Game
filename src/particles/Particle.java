@@ -22,6 +22,7 @@ public class Particle {
 	private float blend;
 	
 	private float elapsedTime = 0;
+	private float distance;
 
 	public Particle(ParticleTexture texture, Vector3f position, Vector3f velocity, float gravityEffect, float lifeLength, float rotation,
 			float scale) {
@@ -33,6 +34,10 @@ public class Particle {
 		this.rotation = rotation;
 		this.scale = scale;
 		ParticleMaster.addParticle(this);
+	}
+
+	public float getDistance() {
+		return distance;
 	}
 
 	public Vector2f getTexOffset1() {
