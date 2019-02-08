@@ -3,6 +3,7 @@ package particles;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import entities.Camera;
 import entities.Player;
 import renderEngine.DisplayManager;
 
@@ -71,11 +72,12 @@ public class Particle {
 		return scale;
 	}
 
-	protected boolean update() {
+	protected boolean update(Camera camera) {
 		velocity.y += Player.GRAVITY * gravityEffect * DisplayManager.getFrameTimeSeconds();
 		Vector3f change = new Vector3f(velocity);
 		change.scale(DisplayManager.getFrameTimeSeconds());
 		Vector3f.add(change, position, position);
+		distance = Vector3f.sub(camera.getPosition(), position, null).lengthSquared();
 		updateTextureCoordInfo();
 		elapsedTime += DisplayManager.getFrameTimeSeconds();
 		return elapsedTime < lifeLength;
