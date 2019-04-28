@@ -35,6 +35,12 @@ public class ParticleRenderer {
 		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
 		prepare();
 		for(ParticleTexture texture : particles.keySet()) {
+			if(texture.useAdditiveBlending()) {
+				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+			}
+			else {
+				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			}
 			GL13.glActiveTexture(GL13.GL_TEXTURE0);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture.getTextureID());
 			for(Particle particle : particles.get(texture)) {
