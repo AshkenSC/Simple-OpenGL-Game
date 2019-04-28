@@ -216,7 +216,7 @@ public class MainGameLoop {
 			
 			// particle generator
 			system.generateParticles(player.getPosition());
-			ParticleMaster.update();			
+			ParticleMaster.update(camera);			
 			
 			// Mouse picker
 			picker.update();
