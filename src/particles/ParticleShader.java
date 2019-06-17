@@ -24,8 +24,8 @@ public class ParticleShader extends ShaderProgram {
 	protected void getAllUniformLocations() {
 		location_modelViewMatrix = super.getUniformLocation("modelViewMatrix");
 		location_projectionMatrix = super.getUniformLocation("projectionMatrix");
-		location_texOffset1  = super.getUniformLocation("textOffset1");
-		location_texOffset2  = super.getUniformLocation("textOffset2");
+		location_texOffset1  = super.getUniformLocation("texOffset1");
+		location_texOffset2  = super.getUniformLocation("texOffset2");
 		location_texCoordInfo = super.getUniformLocation("texCoordInfo");
 	}
 
