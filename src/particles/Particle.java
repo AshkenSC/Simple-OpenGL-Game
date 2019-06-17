@@ -90,6 +90,8 @@ public class Particle {
 		int index1 = (int) Math.floor(atlasProgression);
 		int index2 = index1 < stageCount - 1 ? index1 + 1 : index1;
 		this.blend = atlasProgression % 1;
+		setTextureOffset(texOffset1, index1);
+		setTextureOffset(texOffset2, index2);	
 	}
 	
 	public void setTextureOffset(Vector2f offset, int index) {
