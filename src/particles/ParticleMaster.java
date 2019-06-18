@@ -14,7 +14,7 @@ import renderEngine.Loader;
 
 public class ParticleMaster {
 
-	private static Map<ParticleTexture, List<Particle>> particles = new HashMap<ParticleTexture, List<Particle>>();;
+	private static Map<ParticleTexture, List<Particle>> particles = new HashMap<ParticleTexture, List<Particle>>();
 	private static ParticleRenderer renderer;
 	
 	public static void init(Loader loader, Matrix4f projectionMatrix) {
