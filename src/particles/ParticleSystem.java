@@ -72,7 +72,7 @@ public class ParticleSystem {
         float particlesToCreate = pps * delta;
         int count = (int) Math.floor(particlesToCreate);
         float partialParticle = particlesToCreate % 1;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count * 30; i++) {
             emitParticle(systemCenter);
         }
         if (Math.random() < partialParticle) {
