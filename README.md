@@ -13,7 +13,12 @@
 
 基于高度图（height map）的地形
 
+![image](./readme_img/terrain.jpg)
+
 昼夜变化的天空盒
+
+![image](./readme_img/skybox.gif)
+
 
 ## 水面效果
 水面的反射与水体折射
@@ -26,10 +31,14 @@
 
 水面软边缘（soft edges）效果（水域边缘到陆地的渐变过渡）
 
+![image](./readme_img/water.gif)
+
 ## 玩家移动与镜头控制
 按W, S，角色前进后退；按A, D，角色左右旋转。
 
 按住鼠标左键，向左右移动镜头；按住鼠标右键，向上下移动镜头。
+
+![image](./readme_img/movement.gif)
 
 ## 字体渲染（用于游戏UI）
 
