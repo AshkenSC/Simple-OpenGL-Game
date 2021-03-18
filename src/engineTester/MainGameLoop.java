@@ -115,7 +115,7 @@ public class MainGameLoop {
         List<Entity> normalMapEntities = new ArrayList<Entity>();
 	    // set random entity numbers and locations
         Random random = new Random();
-        for(int i=0; i<500 ;i++){
+        for (int i=0; i<500 ;i++) {
         	if (i % 3 == 0)		// in order to reduce the number of trees to 1/3 of grass
         	{
         		float x = random.nextFloat() * 800 - 400;
@@ -178,7 +178,7 @@ public class MainGameLoop {
 		GuiTexture gui = new GuiTexture(loader.loadTexture("socuwan"), new Vector2f(-0.8f, 0.86f), new Vector2f(0.15f, 0.15f));
 		GuiTexture gui2 = new GuiTexture(loader.loadTexture("image"), new Vector2f(-0.8f, -0.75f), new Vector2f(0.15f, 0.15f));
 		guis.add(gui2);
-		guis.add(gui);
+		//guis.add(gui);
 		
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
@@ -215,7 +215,8 @@ public class MainGameLoop {
 			camera.move();
 			
 			// particle generator
-			system.generateParticles(player.getPosition());
+			// TODO fix particle display error
+			//system.generateParticles(player.getPosition());
 			ParticleMaster.update(camera);			
 			
 			// Mouse picker
